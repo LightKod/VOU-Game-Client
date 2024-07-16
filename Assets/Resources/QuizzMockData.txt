@@ -1,0 +1,44 @@
+{
+  "questions": [
+    {
+      "question": "What is the capital of France?",
+      "answers": ["Paris", "Lyon", "Marseille"]
+    },
+    {
+      "question": "What is the largest planet in our solar system?",
+      "answers": ["Jupiter", "Saturn", "Earth"]
+    },
+    {
+      "question": "What is the chemical symbol for water?",
+      "answers": ["H2O", "O2", "CO2"]
+    },
+    {
+      "question": "Who wrote 'Romeo and Juliet'?",
+      "answers": ["William Shakespeare", "Charles Dickens", "J.K. Rowling"]
+    },
+    {
+      "question": "What is the tallest mountain in the world?",
+      "answers": ["Mount Everest", "K2", "Kangchenjunga"]
+    },
+    {
+      "question": "What is the square root of 64?",
+      "answers": ["8", "6", "7"]
+    },
+    {
+      "question": "Who painted the Mona Lisa?",
+      "answers": ["Leonardo da Vinci", "Vincent van Gogh", "Pablo Picasso"]
+    },
+    {
+      "question": "What is the capital of Japan?",
+      "answers": ["Tokyo", "Kyoto", "Osaka"]
+    },
+    {
+      "question": "What is the smallest prime number?",
+      "answers": ["2", "1", "3"]
+    },
+    {
+      "question": "What is the speed of light?",
+      "answers": ["299,792,458 meters per second", "150,000,000 meters per second", "300,000,000 meters per second"]
+    }
+  ]
+}

@@ -5,8 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects:
-    com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: e592e153cb1812d4490575033c3d32d1, type: 2}
+    addressableimportsettingslist: {fileID: 11400000, guid: 53defa360108dc340865886317728cc5, type: 2}
+    com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 771fefa6946d5b143ab857b16178cd76, type: 2}
+    com.unity.addressableassets: {fileID: 11400000, guid: 6c3f900bab7b7534d8bb31bcbeee2358, type: 2}
