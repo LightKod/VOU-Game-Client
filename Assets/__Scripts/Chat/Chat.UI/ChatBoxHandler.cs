@@ -1,7 +1,10 @@
+using Cysharp.Threading.Tasks;
 using Lean.Pool;
+using Owlet;
 using Sirenix.Utilities;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,7 +18,7 @@ namespace VOU
 
         [SerializeField] ChatItem chatItemPrefab;
         [SerializeField] Transform chatHistoryHolder;
-
+        [SerializeField] RefreshRectTransform refresher;
 
         private void Awake()
         {
@@ -38,10 +41,14 @@ namespace VOU
             }
         }
 
-        void UpdateChatHistory(string playerName, string chatMsg)
+        async void UpdateChatHistory(string playerName, string chatMsg)
         {
-            ChatItem item = LeanPool.Spawn(chatItemPrefab, chatHistoryHolder);
+            ChatItem item = Instantiate(chatItemPrefab, chatHistoryHolder);
             item.SetupUI(playerName, chatMsg);
+
+            await UniTask.DelayFrame(15);
+
+            refresher.Refresh();
         }
     }
 }

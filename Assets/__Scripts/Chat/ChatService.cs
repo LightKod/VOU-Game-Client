@@ -38,14 +38,16 @@ namespace VOU
             {
                 Debug.Log("Chat Socket Disconnected");
             };
-            socket.On("message", (SocketIOResponse res) =>
+            socket.OnUnityThread("message", (SocketIOResponse res) =>
             {
                 Debug.Log(res.ToString());
             });
-            socket.On("chat-received", (SocketIOResponse res) =>
+            socket.OnUnityThread("chat-received", (SocketIOResponse res) =>
             {
                 Debug.Log(res.ToString());
-                onChatReceived?.Invoke("Test", "Test");
+                string name = res.GetValue<string>(0);
+                string msg = res.GetValue<string>(1);
+                onChatReceived?.Invoke(name, msg);
             });
 
             await socket.ConnectAsync();
