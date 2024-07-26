@@ -19,6 +19,7 @@ namespace VOU
         {
             const string prefix = "Popup_";
             public static readonly string QuizzAnswerSelector = $"{prefix}{nameof(QuizzAnswerSelector)}";
+            public static readonly string EventDetail = $"{prefix}{nameof(EventDetail)}";
         }
     }
 }
