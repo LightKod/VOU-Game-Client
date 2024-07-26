@@ -99,6 +99,14 @@ namespace Owlet.UI
             countdownDictionary.TryAdd(key, 5f);
         }
 
+        public void CloseAll()
+        {
+            foreach(var id in activePopup)
+            {
+                CloseUI(id);
+            }
+        }
+
         void CountCooldown()
         {
             List<string> keys = new List<string>(countdownDictionary.Keys);
