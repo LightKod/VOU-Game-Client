@@ -17,6 +17,9 @@ namespace VOU
 
         public bool shouldValidate = true;
         public bool isPasswordField = false;
+        [SerializeField] private Image peekButtonImage;
+        [SerializeField] private Sprite eyeOpenSprite;
+        [SerializeField] private Sprite eyeCloseSprite;
         public bool isNotEmpty = true;
         public bool shouldDisplayValidationText = true;
         public bool shouldShowExtraButton = true;
@@ -26,6 +29,8 @@ namespace VOU
         private Regex regex;
 
         private Color validNormalColor, validColor, invalidColor;
+
+        private bool isPasswordVisible = false;
 
         // Start is called before the first frame update
         void Start()
@@ -115,7 +120,11 @@ namespace VOU
                 if (shouldDisplayValidationText)
                 {
                     validationText.SetText(validationTextContent);
-                    validationText.gameObject.SetActive(true);
+                    if (!validationText.IsActive())
+                    {
+                        validationText.gameObject.SetActive(true);
+                    }
+                    LayoutRebuilder.ForceRebuildLayoutImmediate(validationText.GetComponent<RectTransform>());
                 }
             }
             else
@@ -136,6 +145,17 @@ namespace VOU
         public void ClearText()
         {
             inputField.text = "";
+        }
+
+        public void TogglePeekPassword()
+        {
+            isPasswordVisible = !isPasswordVisible;
+
+            inputField.inputType = isPasswordVisible ? TMP_InputField.InputType.Standard : TMP_InputField.InputType.Password;
+
+            peekButtonImage.sprite = isPasswordVisible ? eyeCloseSprite : eyeOpenSprite;
+
+            inputField.ForceLabelUpdate();
         }
 
         public bool isValidField()
