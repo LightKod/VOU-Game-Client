@@ -17,12 +17,12 @@ namespace VOU
 
         private void Start()
         {
-            QuizzService.instance.onQuestionReceive += StartCounter;
+            QuizManager.instance.onQuestionReceive += StartCounter;
         }
 
         private void OnDestroy()
         {
-            QuizzService.instance.onQuestionReceive -= StartCounter;
+            QuizManager.instance.onQuestionReceive -= StartCounter;
         }
 
         public void StartCounter(QuestionObject questionObject)
