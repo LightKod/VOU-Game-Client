@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3944518956214784281}
   - component: {fileID: 5127539795052876771}
   - component: {fileID: 923250061826634064}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Viewport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 5313385972338069768}
   - component: {fileID: 7136394112241532254}
   - component: {fileID: 3155258067640362846}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 6982977677778993851}
   - component: {fileID: 8219072699635480450}
   - component: {fileID: 4613928130552635281}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Snap Scroll View
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4398653877536516221}
   - component: {fileID: 2105275315186281643}
   - component: {fileID: 5782606859079147190}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Brand Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 2113979473520210886}
   - component: {fileID: 3153265344550554876}
   - component: {fileID: 7488570869228313919}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -248,7 +248,7 @@ GameObject:
   - component: {fileID: 1251583563246676847}
   - component: {fileID: 5344691693903694668}
   - component: {fileID: 6630216217758419001}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Avatar Placeholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -324,7 +324,7 @@ GameObject:
   - component: {fileID: 8407420894137316469}
   - component: {fileID: 2120409233318577605}
   - component: {fileID: 549234038783568424}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Brand Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}

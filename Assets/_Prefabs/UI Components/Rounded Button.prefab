@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6926668974736866527}
   - component: {fileID: 8287482455704213754}
   - component: {fileID: 940777541562817354}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Rounded Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 3681378351431524664}
   - component: {fileID: 4848065858145848229}
   - component: {fileID: 4501823689458072669}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

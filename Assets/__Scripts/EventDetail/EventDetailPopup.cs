@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace VOU
 {
-    public class TestEventDetailPopup : Popup
+    public class EventDetailPopup : Popup
     {
         public void SetupUI(string data)
         {
