@@ -8,6 +8,7 @@ namespace VOU
     public class QuestionObject
     {
         public string question;
-        public string[] answers;
+        public List<string> options;
+        public float timeLimit;
     }
 }

@@ -47,7 +47,7 @@ namespace VOU
 
             for (int i = 0; i < buttons.Count; i++)
             {
-                buttons[i].SetDefaultState(i, questionObject.answers[i]);
+                buttons[i].SetDefaultState(i, questionObject.options[i]);
             }
         }
 
@@ -56,7 +56,7 @@ namespace VOU
             timer.SetActive(false);
             for (int i = 0; i < buttons.Count; i++)
             {
-                buttons[i].SetResultState(i, questionObject.answers[i], answerObject);
+                buttons[i].SetResultState(i, questionObject.options[i], answerObject);
             }
         }
 

@@ -1,4 +1,6 @@
 using Owlet;
+using SocketIOClient;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,10 +9,13 @@ namespace VOU
 {
     public class ChatManager : Singleton<ChatManager>
     {
-        SocketIOUnity socket;
+        ChatService chatService;
 
         bool isConnected = false;
-        string roomID = "1";
+        string roomID = "20";
+
+        public static Action<string, string> onChatReceived;
+
         private void Start()
         {
             SetupConnection(roomID);
@@ -18,13 +23,15 @@ namespace VOU
 
         private void OnDestroy()
         {
-            DisposeConnection();
+            chatService?.Dispose();
         }
 
         public async void SetupConnection(string roomID)
         {
-            socket = await ChatService.CreateConnection();
-            ChatService.JoinRoom(socket, roomID);
+            chatService = new();
+            await chatService.CreateConnection();
+            chatService.JoinRoom(roomID);
+            chatService.On(ChatService.EVENT_RECEIVED_CHAT ,OnChatReceived);
             isConnected = true;
         }
 
@@ -32,13 +39,14 @@ namespace VOU
         public void SendChatMessage(string message)
         {
             if (!isConnected) return;
-            ChatService.SendChat(socket, roomID, message);
+            chatService?.SendChat(roomID, message);
         }
 
-        void DisposeConnection()
+        void OnChatReceived(SocketIOResponse res) 
         {
-            socket?.Disconnect();
-            socket?.Dispose();
+            string name = res.GetValue<string>(0);
+            string msg = res.GetValue<string>(1);
+            onChatReceived?.Invoke(name, msg);
         }
     }
 }

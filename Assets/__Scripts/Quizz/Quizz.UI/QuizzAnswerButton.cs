@@ -28,14 +28,14 @@ namespace VOU
         int answerIndex;
         private void Awake()
         {
-            QuizzService.instance.onAnswerSelected += DisableButtons;
+            QuizManager.instance.onAnswerSelected += DisableButtons;
             QuizzTimer.onCounterFinish += DisableButtons;
             btnSelect.onClick.AddListener(Select);
         }
 
         private void OnDestroy()
         {
-            QuizzService.instance.onAnswerSelected -= DisableButtons;
+            QuizManager.instance.onAnswerSelected -= DisableButtons;
             QuizzTimer.onCounterFinish += DisableButtons;
         }
 
@@ -83,7 +83,7 @@ namespace VOU
         public void Select()
         {
             Debug.Log($"Select: {answerIndex}");
-            QuizzService.instance.SelectAnswer(answerIndex);
+            QuizManager.instance.SelectAnswer(answerIndex);
             SetState(QuizzAnswerButtonState.Selected);
         }
 

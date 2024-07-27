@@ -23,12 +23,12 @@ namespace VOU
         private void Awake()
         {
             btnSend.onClick.AddListener(SendChatMessage);
-            ChatService.onChatReceived += UpdateChatHistory;
+            ChatManager.onChatReceived += UpdateChatHistory;
         }
 
         private void OnDestroy()
         {
-            ChatService.onChatReceived -= UpdateChatHistory;
+            ChatManager.onChatReceived -= UpdateChatHistory;
         }
 
         void SendChatMessage()
