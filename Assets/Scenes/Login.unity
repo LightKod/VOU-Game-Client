@@ -2788,9 +2788,49 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 638666007508085895, guid: a2b0a4d7172853446a4cd2eb9df1e502, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 638666007508085895, guid: a2b0a4d7172853446a4cd2eb9df1e502, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 638666007508085895, guid: a2b0a4d7172853446a4cd2eb9df1e502, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 638666007508085895, guid: a2b0a4d7172853446a4cd2eb9df1e502, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 638666007508085895, guid: a2b0a4d7172853446a4cd2eb9df1e502, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2357752124990685434, guid: a2b0a4d7172853446a4cd2eb9df1e502, type: 3}
       propertyPath: m_Name
       value: Non-password Input Field
+      objectReference: {fileID: 0}
+    - target: {fileID: 2418478449226919358, guid: a2b0a4d7172853446a4cd2eb9df1e502, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2418478449226919358, guid: a2b0a4d7172853446a4cd2eb9df1e502, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2418478449226919358, guid: a2b0a4d7172853446a4cd2eb9df1e502, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2418478449226919358, guid: a2b0a4d7172853446a4cd2eb9df1e502, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2418478449226919358, guid: a2b0a4d7172853446a4cd2eb9df1e502, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

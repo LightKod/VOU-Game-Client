@@ -19,6 +19,7 @@ namespace VOU
         public bool isPasswordField = false;
         public bool isNotEmpty = true;
         public bool shouldDisplayValidationText = true;
+        public bool shouldShowExtraButton = true;
         public string regexToCheck = "";
         public string regexValidationTextContent = "";
 
@@ -57,7 +58,7 @@ namespace VOU
 
             if(input.Length > 0)
             {
-                if(!extraButton.IsActive())
+                if(!extraButton.IsActive() && shouldShowExtraButton)
                 {
                     extraButton.gameObject.SetActive(true);
                 }
@@ -135,6 +136,12 @@ namespace VOU
         public void ClearText()
         {
             inputField.text = "";
+        }
+
+        public bool isValidField()
+        {
+            string input = inputField.text.Trim();
+            return CheckEmptyString(input) && CheckWithRegex(input);
         }
     }
 }
