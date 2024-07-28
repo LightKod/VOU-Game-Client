@@ -25,13 +25,13 @@ namespace VOU
 
         protected override void OnEnableUI()
         {
-            QuizzTimer.onCounterTick += UpdateTimer;
+            QuizTimer.onCounterTick += UpdateTimer;
             base.OnEnableUI();
         }
 
         protected override void OnDisableUI()
         {
-            QuizzTimer.onCounterTick -= UpdateTimer;
+            QuizTimer.onCounterTick -= UpdateTimer;
             base.OnDisableUI();
         }
 
@@ -42,7 +42,7 @@ namespace VOU
             txtQuestion.text = questionObject.question;
             ColorUtility.TryParseHtmlString(Keys.Color.CoralBlue, out Color color);
             imgTimerFill.color = color;
-            txtTimer.text = ((int)QuizzTimer.TIME_TO_ANSWER).ToString();
+            txtTimer.text = ((int)QuizTimer.TIME_TO_ANSWER).ToString();
 
 
             for (int i = 0; i < buttons.Count; i++)
@@ -79,7 +79,7 @@ namespace VOU
                 imgTimerFill.color = color;
             }
             txtTimer.text = ((int)timeLeft).ToString();
-            sliderTimer.value = (QuizzTimer.TIME_TO_ANSWER - timeLeft) / QuizzTimer.TIME_TO_ANSWER;
+            sliderTimer.value = (QuizTimer.TIME_TO_ANSWER - timeLeft) / QuizTimer.TIME_TO_ANSWER;
         }
     }
 }

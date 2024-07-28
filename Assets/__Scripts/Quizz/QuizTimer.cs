@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace VOU
 {
-    public class QuizzTimer : MonoBehaviour
+    public class QuizTimer : MonoBehaviour
     {
         public static readonly float TIME_TO_ANSWER = 12;
         float counter;
@@ -28,7 +28,7 @@ namespace VOU
         public void StartCounter(QuestionObject questionObject)
         {
             isCounting = true;
-            counter = TIME_TO_ANSWER;
+            counter = questionObject.timeLimit;
         }
 
 

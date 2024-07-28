@@ -29,14 +29,14 @@ namespace VOU
         private void Awake()
         {
             QuizManager.instance.onAnswerSelected += DisableButtons;
-            QuizzTimer.onCounterFinish += DisableButtons;
+            QuizTimer.onCounterFinish += DisableButtons;
             btnSelect.onClick.AddListener(Select);
         }
 
         private void OnDestroy()
         {
             QuizManager.instance.onAnswerSelected -= DisableButtons;
-            QuizzTimer.onCounterFinish += DisableButtons;
+            QuizTimer.onCounterFinish += DisableButtons;
         }
 
         [Button]

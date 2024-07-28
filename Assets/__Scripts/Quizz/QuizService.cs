@@ -22,6 +22,8 @@ namespace VOU
         public const string EVENT_RESULT = "answerResult";
         public const string EVENT_END_QUIZ = "endQuiz";
 
+        string currentRoom;
+
         protected override string GetURl()
         {
             return ServiceHelper.GetURL(Env.Routes.Quiz.Root);
@@ -30,6 +32,12 @@ namespace VOU
         public void JoinRoom(string roomID)
         {
             socket.Emit(EVENT_JOIN_ROOM, roomID);
+            currentRoom = roomID;
+        }
+
+        public void AnswerQuestion(int answerIndex)
+        {
+            socket.Emit(EVENT_SEND_ANSWER, currentRoom, answerIndex);
         }
     }
 }
