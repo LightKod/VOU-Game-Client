@@ -27,6 +27,7 @@ namespace VOU
             public static readonly string OTPInputPage = $"{prefix}{nameof(OTPInputPage)}";
             public static readonly string InputUserDetail = $"{prefix}{nameof(InputUserDetail)}";
             public static readonly string InputAccountDetail = $"{prefix}{nameof(InputAccountDetail)}";
+            public static readonly string EventListView = $"{prefix}{nameof(EventListView)}";
         }
     }
 }
