@@ -15,6 +15,7 @@ namespace VOU
             public static readonly string Red = "#e6356b";
             public static readonly string Black_Text = "#272727";
             public static readonly string Purple_UI = "#7D62FF";
+            public static readonly string Grey_Placeholder = "#32323280";
         }
 
         public static class Popup
@@ -28,6 +29,7 @@ namespace VOU
             public static readonly string InputUserDetail = $"{prefix}{nameof(InputUserDetail)}";
             public static readonly string InputAccountDetail = $"{prefix}{nameof(InputAccountDetail)}";
             public static readonly string EventListView = $"{prefix}{nameof(EventListView)}";
+            public static readonly string Search = $"{prefix}{nameof(Search)}";
         }
     }
 }

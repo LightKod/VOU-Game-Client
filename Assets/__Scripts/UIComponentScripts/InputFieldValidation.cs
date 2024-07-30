@@ -40,7 +40,6 @@ namespace VOU
                 inputField.onValueChanged.AddListener(delegate { ValidateInputField(); });
             }
 
-            Debug.Log(regexToCheck);
             regex = new Regex(regexToCheck);
 
             if(!ColorUtility.TryParseHtmlString(Keys.Color.Black_Text, out validNormalColor))
@@ -158,7 +157,7 @@ namespace VOU
             inputField.ForceLabelUpdate();
         }
 
-        public bool isValidField()
+        public bool IsValidField()
         {
             string input = inputField.text.Trim();
             return CheckEmptyString(input) && CheckWithRegex(input);

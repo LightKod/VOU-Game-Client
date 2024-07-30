@@ -1,13 +1,12 @@
-using EnhancedScrollerDemos.Pagination;
-using EnhancedUI;
 using EnhancedUI.EnhancedScroller;
+using EnhancedUI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace VOU
 {
-    public class EventScrollerController : MonoBehaviour, IEnhancedScrollerDelegate
+    public class SearchScrollerController : MonoBehaviour, IEnhancedScrollerDelegate
     {
         private SmallList<EventItem> _data;
 
@@ -19,9 +18,12 @@ namespace VOU
         public int cellHeight;
         public int pageCount;
 
+        [SerializeField] private GameObject searchPlaceholder;
+
         private bool _loadingNew;
 
-        private void Start()
+        // Start is called before the first frame update
+        void Start()
         {
             scroller.Delegate = this;
             scroller.scrollerScrolled = ScrollerScrolled;
@@ -33,7 +35,8 @@ namespace VOU
             scroller.ReloadData();
             scroller.ScrollPosition = 0;
 
-            LoadData(0);
+            scroller.gameObject.SetActive(false);
+            searchPlaceholder.SetActive(true);
         }
 
         private void LoadData(int pageStartIndex)
@@ -63,6 +66,16 @@ namespace VOU
             _loadingNew = false;
         }
 
+        public int GetNumberOfCells(EnhancedScroller scroller)
+        {
+            return _data.Count + 1;
+        }
+
+        public float GetCellViewSize(EnhancedScroller scroller, int dataIndex)
+        {
+            return cellHeight;
+        }
+
         public EnhancedScrollerCellView GetCellView(EnhancedScroller scroller, int dataIndex, int cellIndex)
         {
             if (dataIndex == _data.Count)
@@ -84,16 +97,6 @@ namespace VOU
                 // return the cell to the scroller
                 return cellView;
             }
-        }
-
-        public float GetCellViewSize(EnhancedScroller scroller, int dataIndex)
-        {
-            return cellHeight;
-        }
-
-        public int GetNumberOfCells(EnhancedScroller scroller)
-        {
-            return _data.Count + 1;
         }
 
         private void ScrollerScrolled(EnhancedScroller scroller, Vector2 val, float scrollPosition)
@@ -118,6 +121,20 @@ namespace VOU
 
             // load the data
             LoadData(_data.Count);
+        }
+
+        public void StartSearching()
+        {
+            // Reset the list view
+            _data = new SmallList<EventItem>();
+            scroller.ReloadData();
+            scroller.ScrollPosition = 0;
+
+            scroller.gameObject.SetActive(true);
+            searchPlaceholder.SetActive(false);
+
+            _loadingNew = true;
+            StartCoroutine(FakeDelay());
         }
     }
 }
