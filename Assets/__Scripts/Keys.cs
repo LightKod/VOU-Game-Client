@@ -30,6 +30,9 @@ namespace VOU
             public static readonly string InputAccountDetail = $"{prefix}{nameof(InputAccountDetail)}";
             public static readonly string EventListView = $"{prefix}{nameof(EventListView)}";
             public static readonly string Search = $"{prefix}{nameof(Search)}";
+            public static readonly string Voucher = $"{prefix}{nameof(Voucher)}";
+            public static readonly string VoucherDetail = $"{prefix}{nameof(VoucherDetail)}";
+            public static readonly string VoucherQR = $"{prefix}{nameof(VoucherQR)}";
         }
     }
 }

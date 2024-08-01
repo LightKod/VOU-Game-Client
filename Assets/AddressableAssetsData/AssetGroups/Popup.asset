@@ -77,6 +77,24 @@ MonoBehaviour:
     m_SerializedLabels:
     - Popup
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 245ca68099c4caa4fbef7bc98f7d4c52
+    m_Address: Popup_Voucher
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Popup
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 67365cb7226d6184bbc3a0df3903189b
+    m_Address: Popup_VoucherDetail
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Popup
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e9c7d3b0d4ca2bc47bce241a6f086939
+    m_Address: Popup_VoucherQR
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Popup
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 17e62476a98047f49a583c9ae59f72f1, type: 2}
   m_SchemaSet:
