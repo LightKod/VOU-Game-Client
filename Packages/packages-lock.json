@@ -9,6 +9,15 @@
       },
       "hash": "9370fd2fb7bdf05a75eedee57a55b459be7d4a11"
     },
+    "com.convalise.unity-material-symbols": {
+      "version": "https://github.com/convalise/unity-material-symbols.git?path=/src/UnityMaterialSymbols/Assets/MaterialSymbols",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.ugui": "1.0.0"
+      },
+      "hash": "c2f051c45407b06ae0314a135d7fc782bbf8c908"
+    },
     "com.cysharp.unitask": {
       "version": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
       "depth": 0,
