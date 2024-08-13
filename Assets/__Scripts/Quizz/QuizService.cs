@@ -26,7 +26,7 @@ namespace VOU
 
         protected override string GetURl()
         {
-            return ServiceHelper.GetURL(Env.Routes.Quiz.Root);
+            return HttpClient.GetURL(Env.Routes.Quiz.Root);
         }
 
         public void JoinRoom(string roomID)

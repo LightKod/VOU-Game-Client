@@ -7,7 +7,7 @@ namespace VOU
     //Should realy not exist here
     public static class Env
     {
-        public static string BASE_URL = "http://localhost:3000";
+        public static string BASE_URL = "http://localhost:8000";
 
         public static class Routes
         {
@@ -19,10 +19,13 @@ namespace VOU
             {
                 public static string Root = "/chat";
             }
+
+            public static class Auth
+            {
+                public static string Root = "/auth";
+                public static string Register = $"{Root}/register";
+                public static string Login = $"{Root}/login";
+            }
         }
-
-
-
-
     }
 }

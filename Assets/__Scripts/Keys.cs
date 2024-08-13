@@ -18,6 +18,14 @@ namespace VOU
             public static readonly string Grey_Placeholder = "#32323280";
         }
 
+        public static class PlayerPrefs
+        {
+            public static class User
+            {
+                public static readonly string Token = nameof(Token);
+            }
+        }
+
         public static class Popup
         {
             const string prefix = "Popup_";
@@ -33,6 +41,13 @@ namespace VOU
             public static readonly string Voucher = $"{prefix}{nameof(Voucher)}";
             public static readonly string VoucherDetail = $"{prefix}{nameof(VoucherDetail)}";
             public static readonly string VoucherQR = $"{prefix}{nameof(VoucherQR)}";
+        }
+
+        public static class Scene
+        {
+            public static readonly string LandingScene = nameof(LandingScene);
+            public static readonly string HomeScene = nameof(HomeScene);
+            public static readonly string RealTimeQuizScene = nameof(RealTimeQuizScene);
         }
     }
 }

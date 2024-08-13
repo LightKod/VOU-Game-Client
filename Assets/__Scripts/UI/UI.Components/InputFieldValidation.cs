@@ -164,5 +164,13 @@ namespace VOU
             string input = inputField.text.Trim();
             return CheckEmptyString(input) && CheckWithRegex(input);
         }
+
+        public string GetValue()
+        {
+            if (IsValidField())
+                return inputField.text.Trim();
+            else
+                return "";
+        }
     }
 }

@@ -54,7 +54,7 @@ namespace Owlet.Systems.SceneTransistions
             yield return new WaitForSeconds(1.5f);
             yield return LoadScene(sceneName);
             yield return new WaitForSeconds(1.5f);
-            //ShowGameplayScene();
+            ShowGameplayScene();
 
             isTransistioning = false;
         }

@@ -22,7 +22,7 @@ namespace VOU
 
         protected override string GetURl()
         {
-            return ServiceHelper.GetURL(Env.Routes.Chat.Root);
+            return HttpClient.GetURL(Env.Routes.Chat.Root);
         }
 
         public void JoinRoom(string roomID)

@@ -17,7 +17,7 @@ namespace VOU
 
         async void Loading()
         {
-            await UniTask.Delay(TimeSpan.FromSeconds(1f)); //Should be replace by the actual loading
+            await UniTask.Delay(TimeSpan.FromSeconds(2f)); //Should be replace by the actual loading
             toggle.TurnOn();
         }
     }

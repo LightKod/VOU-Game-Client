@@ -48,7 +48,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 987771470144869721}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -179,7 +179,7 @@ MonoBehaviour:
   Alias: 
   Data:
     Duration: 1
-    Target: {fileID: 1360257348731235753}
+    Target: {fileID: 7672770298809949476}
     Value: 1
     Ease: 100
 --- !u!114 &1894938016163701086
@@ -337,7 +337,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: -1753557687
-  m_SortingOrder: 0
+  m_SortingOrder: 14
   m_TargetDisplay: 0
 --- !u!114 &8732558598607829038
 MonoBehaviour:
@@ -578,7 +578,7 @@ MonoBehaviour:
   Alias: 
   Data:
     Duration: 1
-    Target: {fileID: 1360257348731235753}
+    Target: {fileID: 7672770298809949476}
     Value: 0
     Ease: 100
 --- !u!114 &7931504419317048390
@@ -871,7 +871,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 634628160632503427}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
