@@ -48,7 +48,28 @@ namespace VOU
             {
                 onError?.Invoke(www.error);
             }
-            
+        }
+
+        public static async UniTask GetRequest(string url, System.Action<string> onSuccess = null, System.Action<string> onError = null)
+        {
+            using UnityWebRequest www = UnityWebRequest.Get(url);
+            try
+            {
+                await www.SendWebRequest();
+
+                if (www.result == UnityWebRequest.Result.Success)
+                {
+                    onSuccess?.Invoke(www.downloadHandler.text);
+                }
+                else
+                {
+                    onError?.Invoke(www.error);
+                }
+            }
+            catch (Exception e)
+            {
+                onError?.Invoke(e.Message);
+            }
         }
 
         public static string GetURL(string baseUrl, string route)

@@ -14,7 +14,6 @@ namespace VOU
         [SerializeField] private Image searchIcon;
         [SerializeField] private Button clearButton;
         [SerializeField] private Image clearButtonImage;
-        [SerializeField] private SearchScrollerController searchScrollerController;
 
         private Color focusColor, nonFocusColor;
 
@@ -62,7 +61,6 @@ namespace VOU
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
             {
                 Debug.Log(searchField.text);
-                searchScrollerController.StartSearching();
             }
         }
 

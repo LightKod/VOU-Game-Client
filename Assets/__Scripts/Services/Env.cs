@@ -26,6 +26,12 @@ namespace VOU
                 public static string Register = $"{Root}/register";
                 public static string Login = $"{Root}/login";
             }
+
+            public static class Event
+            {
+                public static string Root = "/event";
+                public static string All = $"{Root}/all";
+            }
         }
     }
 }

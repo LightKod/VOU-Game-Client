@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace VOU
 {
-    public class SearchScrollerController : MonoBehaviour, IEnhancedScrollerDelegate
+   /* public class SearchScrollerController : MonoBehaviour, IEnhancedScrollerDelegate
     {
         private SmallList<EventItem> _data;
 
@@ -136,5 +136,5 @@ namespace VOU
             _loadingNew = true;
             StartCoroutine(FakeDelay());
         }
-    }
+    }*/
 }
