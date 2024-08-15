@@ -22,7 +22,7 @@ namespace VOU
                     BaseModel cachedModel = currentCached.FirstOrDefault(x => x.id == model.id);
                     if (cachedModel != null)
                     {
-                        cachedModel.Copy(model);
+                        //cachedModel.Copy(model);
                     }
                     else
                     {

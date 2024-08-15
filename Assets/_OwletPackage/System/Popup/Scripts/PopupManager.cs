@@ -28,7 +28,7 @@ namespace Owlet.UI
             //CountCooldown();
         }
 
-        public async UniTask<T> OpenUI<T>(string key, int layer, bool backdropInteractable = true) where T : Popup
+        public async UniTask<T> OpenUI<T>(string key, int layer = 0, bool backdropInteractable = true) where T : Popup
         {
             if (tryingToOpen.Contains(key)) return null;
 

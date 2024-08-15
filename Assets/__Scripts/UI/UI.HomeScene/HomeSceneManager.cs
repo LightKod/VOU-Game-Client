@@ -9,6 +9,7 @@ namespace VOU
     public class HomeSceneManager : MonoBehaviour
     {
         List<EventModel> featureEvents;
+        [SerializeField] EventScroller featureEventScroller;
 
         private void Start()
         {
@@ -24,6 +25,7 @@ namespace VOU
                 {
                     Debug.Log(evnt.name);
                 }
+                featureEventScroller.SetData(featureEvents);
                 Debug.Log(featureEvents.Count);
             }
             , (msg) =>

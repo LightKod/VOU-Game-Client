@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace VOU
 {
-    public class EventModel
+    public class EventModel : BaseModel
     {
         public int brand_id { get; set; } 
         public string poster { get; set; }

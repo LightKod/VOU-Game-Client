@@ -19,7 +19,6 @@ namespace VOU
         async void OnOpenEventDetail()
         {
             EventDetailPopup popup = await PopupManager.instance.OpenUI<EventDetailPopup>(Keys.Popup.EventDetail, 0);
-            popup.SetupUI("AAAAAA");
         }
     }
 }

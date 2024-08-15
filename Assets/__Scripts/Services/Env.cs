@@ -31,6 +31,7 @@ namespace VOU
             {
                 public static string Root = "/event";
                 public static string All = $"{Root}/all";
+                public static string GetWithID = $"{Root}";
             }
         }
     }
