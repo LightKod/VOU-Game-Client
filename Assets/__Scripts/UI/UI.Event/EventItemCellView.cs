@@ -17,6 +17,7 @@ namespace VOU
 
         EventModel eventModel;
 
+
         private void Start()
         {
             GetComponent<Button>().onClick.AddListener(OpenEventDetail);
@@ -25,14 +26,16 @@ namespace VOU
         async void OpenEventDetail()
         {
             if (eventModel == null) return;
-            var eventDetailPopup = await PopupManager.instance.OpenUI<EventDetailPopup>(Keys.Popup.EventDetail,0);
+            var eventDetailPopup = await PopupManager.instance.OpenUI<EventDetailPopup>(Keys.Popup.EventDetail,0, false);
             eventDetailPopup.SetEventId(eventModel.id);
+            eventDetailPopup.EnableUI();
         }
 
-        public void SetData(EventModel eventModel)
+        public async void SetData(EventModel eventModel)
         {
             this.eventModel = eventModel;
             txtEventName.text = eventModel.name;
+            imgPoster.sprite = await ImageCache.GetImage(eventModel.poster);
         }
     }
 }

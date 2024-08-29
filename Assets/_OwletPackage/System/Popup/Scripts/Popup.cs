@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Lean.Gui;
+using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 
 namespace Owlet.UI.Popups
 {
@@ -19,8 +21,9 @@ namespace Owlet.UI.Popups
         public bool closing { get; private set; }
 
 
-        public virtual void EnableUI()
+        public virtual async void EnableUI()
         {
+            await FetchData();
             StopAllCoroutines();
             OnEnableUI();
             closing = false;
@@ -36,6 +39,11 @@ namespace Owlet.UI.Popups
         protected virtual void OnDisableUI()
         {
 
+        }
+
+        protected virtual async UniTask FetchData()
+        {
+            await Task.Yield();
         }
 
         public virtual void DisableUI()

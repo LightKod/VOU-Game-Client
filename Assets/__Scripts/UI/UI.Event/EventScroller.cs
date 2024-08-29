@@ -1,3 +1,4 @@
+using CodiceApp.EventTracking;
 using EnhancedUI.EnhancedScroller;
 using System.Collections;
 using System.Collections.Generic;
@@ -27,8 +28,9 @@ namespace VOU
 
         public EnhancedScrollerCellView GetCellView(EnhancedScroller scroller, int dataIndex, int cellIndex)
         {
+            EventModel model = _data[dataIndex];
             EventItemCellView cellView = scroller.GetCellView(cellViewPrefab) as EventItemCellView;
-            cellView.SetData(_data[dataIndex]);
+            cellView.SetData(model);
             return cellView;
         }
 

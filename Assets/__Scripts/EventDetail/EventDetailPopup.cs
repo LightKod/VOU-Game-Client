@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using Newtonsoft.Json;
 using Owlet.UI.Popups;
 using System.Collections;
@@ -13,14 +14,22 @@ namespace VOU
         [SerializeField] Image imgPoster; 
         [SerializeField] TextMeshProUGUI txtEventName; 
         [SerializeField] TextMeshProUGUI txtEventDetail;
-        
+
+        int eventId;
+
         public void SetEventId(int eventId)
         {
-            FetchEventData(eventId);
+            this.eventId = eventId;
         }
 
 
-        async void FetchEventData(int eventId)
+        protected override async UniTask FetchData()
+        {
+            await FetchEventData();
+        }
+
+
+        async UniTask FetchEventData()
         {
             await HttpClient.GetRequest(HttpClient.GetURL($"{Env.Routes.Event.GetWithID}/{eventId}"), (res) =>
             {
@@ -33,10 +42,12 @@ namespace VOU
             });
         }
 
-        void UpdateUI(EventModel eventModel)
+        async void UpdateUI(EventModel eventModel)
         {
             txtEventName.text = eventModel.name;
             txtEventDetail.text = eventModel.description;
+
+            imgPoster.sprite = await ImageCache.GetImage(eventModel.poster);
         }
     }
 }

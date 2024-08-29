@@ -1,7 +1,9 @@
 using Newtonsoft.Json;
+using Owlet.Systems.SceneTransistions;
 using PlasticPipe.PlasticProtocol.Messages;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace VOU
@@ -18,20 +20,24 @@ namespace VOU
 
         async void FetchFeatureEvents()
         {
-            await HttpClient.GetRequest(ServiceHelper.GetURL(Env.Routes.Event.All), (string res) =>
+            await HttpClient.GetRequest(ServiceHelper.GetURL(Env.Routes.Event.All), async (string res) =>
             {
                 featureEvents = JsonConvert.DeserializeObject<List<EventModel>>(res);
-                foreach (var evnt in featureEvents)
-                {
-                    Debug.Log(evnt.name);
-                }
+
+                List<string> imgUrls = featureEvents.Select(x => x.poster).ToList();
+
+                await ImageCache.LoadImages(imgUrls, 5);
+                Debug.Log("Done loading");
+
                 featureEventScroller.SetData(featureEvents);
-                Debug.Log(featureEvents.Count);
             }
             , (msg) =>
             {
                 Debug.Log($"Error fetching feature events: {msg}");
             });
+
+
+            SceneTransistion.instance.DisableLoadingScreen();
         }
     }
 }

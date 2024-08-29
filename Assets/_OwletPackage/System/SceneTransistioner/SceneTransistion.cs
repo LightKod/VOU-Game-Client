@@ -27,14 +27,14 @@ namespace Owlet.Systems.SceneTransistions
 
         private void OnApplicationQuit()
         {
-            ShowGameplayScene();
+            DisableLoadingScreen();
         }
 
-        public void ShowGameplayScene()
+        public void DisableLoadingScreen()
         {
             toggle.TurnOff();
         }
-        public void HideGameplayScene()
+        public void EnableLoadingScreen()
         {
             toggle.TurnOn();
         }
@@ -50,11 +50,11 @@ namespace Owlet.Systems.SceneTransistions
         {
             isTransistioning = true;
 
-            HideGameplayScene();
+            EnableLoadingScreen();
             yield return new WaitForSeconds(1.5f);
             yield return LoadScene(sceneName);
             yield return new WaitForSeconds(1.5f);
-            ShowGameplayScene();
+            //ShowGameplayScene();
 
             isTransistioning = false;
         }

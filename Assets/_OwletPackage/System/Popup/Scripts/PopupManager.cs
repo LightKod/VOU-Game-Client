@@ -28,40 +28,33 @@ namespace Owlet.UI
             //CountCooldown();
         }
 
-        public async UniTask<T> OpenUI<T>(string key, int layer = 0, bool backdropInteractable = true) where T : Popup
+        public async UniTask<T> OpenUI<T>(string key, int layer = 0, bool instantEnable = true) where T : Popup
         {
             if (tryingToOpen.Contains(key)) return null;
 
             if (layer >= layers.Length) return null;
 
-            backdrop.interactable = backdropInteractable;
-
             Transform parent = layers[layer];
-            //Helper.Log($"Opening UI: {key}");
             //If UI is already opened
             if (cachedObjects.ContainsKey(key))
             {
-                cachedObjects[key].EnableUI();
+                if(instantEnable) cachedObjects[key].EnableUI();
                 cachedObjects[key].transform.SetParent(parent);
                 cachedObjects[key].transform.SetAsLastSibling();
-                //Helper.Log($"Containing UI: {key}");
 
                 if (countdownDictionary.ContainsKey(key)) countdownDictionary.Remove(key);
                 activePopup.Add(key);
                 SetBackDropState(true);
-                //if (triggerEvent)
                 onUIOpened?.Invoke();
                 return cachedObjects[key] as T;
             }
-            //Helper.Log($"Open New UI: {key}");
+
             tryingToOpen.Add(key);
             Popup uiPrefab = await AddressableLoader.Load<Popup>(key);
-            /*AsyncOperationHandle<GameObject> opHandle = Addressables.LoadAssetAsync<GameObject>(key);
-            await opHandle.Task;*/
             if (uiPrefab != null)
             {
                 Popup ui = Instantiate(uiPrefab, parent);
-                ui.EnableUI();
+                if(instantEnable) ui.EnableUI();
                 cachedObjects.Add(key, ui);
 
                 if (countdownDictionary.ContainsKey(key)) countdownDictionary.Remove(key);

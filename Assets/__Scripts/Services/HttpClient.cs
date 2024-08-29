@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -69,6 +70,31 @@ namespace VOU
             catch (Exception e)
             {
                 onError?.Invoke(e.Message);
+            }
+        }
+
+        public static async UniTask<Sprite> GetSpriteFromURL(string url)
+        {
+            using (UnityWebRequest www = UnityWebRequestTexture.GetTexture(url))
+            {
+                var asyncOp = www.SendWebRequest();
+
+                while (asyncOp.isDone == false)
+                    await Task.Delay(1000 / 30);
+
+                if( www.result!=UnityWebRequest.Result.Success )
+                {
+#if DEBUG
+                    Debug.Log($"{www.error}, URL:{www.url}");
+#endif
+
+                    return null;
+                }
+                else
+                {
+                    Texture2D texture = DownloadHandlerTexture.GetContent(www);
+                    return Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
+                }
             }
         }
 
