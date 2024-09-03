@@ -33,6 +33,21 @@ namespace VOU
                 public static string All = $"{Root}/all";
                 public static string GetWithID = $"{Root}";
             }
+
+            public static class Game
+            {
+                public static string Root = "/game";
+                public static string All = $"{Root}/all";
+                public static string GetWithID = $"{Root}";
+                public static string GetAllInEvent = $"{Root}/event";
+
+                public static class GameType
+                {
+                    public static string Root = $"{Game.Root}/gametype";
+                    public static string GetWithID = $"{Root}";
+
+                }
+            }
         }
     }
 }

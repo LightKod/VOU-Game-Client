@@ -29,6 +29,24 @@ MonoBehaviour:
     m_SerializedLabels:
     - UI
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f58328fcecf8fc94ebee5af9164e7e7c
+    m_Address: UI_QuizzItem
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7deda24590b60224c91fd90b7005a403
+    m_Address: UI_GameItem
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 40c922c629f9b694f928066a966bdb00
+    m_Address: UI_EventItem
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 17e62476a98047f49a583c9ae59f72f1, type: 2}
   m_SchemaSet:

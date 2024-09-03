@@ -1,4 +1,3 @@
-using CodiceApp.EventTracking;
 using EnhancedUI.EnhancedScroller;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,18 +5,18 @@ using UnityEngine;
 
 namespace VOU
 {
-    public class EventScroller : ModelScroller<EventModel>
+    public class GameScroller : ModelScroller<GameModel>
     {
-        public void SetData(List<EventModel> eventModels)
+        public void SetData(List<GameModel> gameModels)
         {
-            _data = eventModels;
+            _data = gameModels;
             scroller.ReloadData();
         }
 
         public override EnhancedScrollerCellView GetCellView(EnhancedScroller scroller, int dataIndex, int cellIndex)
         {
-            EventModel model = _data[dataIndex];
-            EventItemCellView cellView = scroller.GetCellView(cellViewPrefab) as EventItemCellView;
+            GameModel model = _data[dataIndex];
+            GameItemCellView cellView = scroller.GetCellView(cellViewPrefab) as GameItemCellView;
             cellView.SetData(model);
             return cellView;
         }

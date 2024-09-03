@@ -37,11 +37,9 @@ namespace VOU
             initialAmount = Mathf.Clamp(initialAmount, 0, urls.Count - 1);
             List<string> initialLoad = urls.GetRange(0, initialAmount);
             List<string> lazyLoad = urls.GetRange(initialAmount, urls.Count - initialAmount);
-            int count = 0;
             foreach(string url in initialLoad)
             {
                 await GetImage(url);
-                Debug.Log($"Load {count++}");
             }
 
             LoadLazy(lazyLoad);
@@ -54,11 +52,9 @@ namespace VOU
         /// <param name="urls"></param>
         public static async void LoadLazy(List<string> urls)
         {
-            int count = 0;
             foreach (string url in urls)
             {
                 await GetImage(url);
-                Debug.Log($"Load Extra {count++}");
             }
         }
     }
