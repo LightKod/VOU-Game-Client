@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
 using Newtonsoft.Json;
 using Owlet;
+using Owlet.Systems.SceneTransistions;
 using Owlet.UI.Popups;
 using System;
 using System.Collections;
@@ -32,6 +33,10 @@ namespace VOU
         GameModel gameModel;
         GameTypeModel gameTypeModel;
 
+        private void Awake()
+        {
+            btnPlay.onClick.AddListener(PlayGame);
+        }
 
         public void SetGameID(int gameId)
         {
@@ -100,9 +105,35 @@ namespace VOU
             refresher.Refresh();
 
             if (gameTypeModel == null) return;
-            txtGameTypeName.text = gameTypeModel.name;
+            txtGameTypeName.text = "Real-time Quiz";
 
             refresher.Refresh();
+        }
+
+
+        void PlayGame()
+        {
+            if (gameModel == null) return;
+            DateTime now = DateTime.Now;
+            if(now > gameModel.end_time)
+            {
+                MessagePopup.Open("Game has ended", "The game has already ended!");
+
+                return;
+            }
+            HandleGameSceneTransition();
+        }
+
+
+        void HandleGameSceneTransition()
+        {
+            PlayerPrefs.SetInt(Keys.PlayerPrefs.GameID, gameId);
+
+            if(gameTypeModel.id == 1) //Real time quiz
+            {
+                SceneTransistion.instance.ChangeScene(Keys.Scene.RealTimeQuizScene);
+            }
+
         }
     }
 }

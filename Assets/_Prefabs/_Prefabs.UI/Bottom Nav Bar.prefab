@@ -731,7 +731,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2844006860346472399, guid: 8692888523551314e89e9176f9d42408, type: 3}
       propertyPath: popupID
-      value: Popup_EventDetail
+      value: Popup_EventList
       objectReference: {fileID: 0}
     - target: {fileID: 4083831728300610298, guid: 8692888523551314e89e9176f9d42408, type: 3}
       propertyPath: m_IsActive

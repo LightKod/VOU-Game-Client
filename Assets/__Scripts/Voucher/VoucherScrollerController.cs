@@ -8,7 +8,7 @@ namespace VOU
 {
     public class VoucherScrollerController : MonoBehaviour, IEnhancedScrollerDelegate
     {
-        private SmallList<VoucherItem> _data;
+        private List<VoucherItem> _data;
 
         [SerializeField] private EnhancedScroller scroller;
 
@@ -28,9 +28,8 @@ namespace VOU
 
         private void OnEnable()
         {
-            _data = new SmallList<VoucherItem>();
+            _data = new List<VoucherItem>();
             scroller.ReloadData();
-            scroller.ScrollPosition = 0;
 
             LoadData(0);
         }

@@ -11,9 +11,10 @@ namespace VOU
 
         public static class Routes
         {
-            public static class Quiz
+            public static class Socket
             {
-                public static string Root = "/quiz";
+                public static string Root = "/socket";
+                public static string Quiz = $"/quiz";
             }
             public static class Chat
             {
@@ -31,6 +32,7 @@ namespace VOU
             {
                 public static string Root = "/event";
                 public static string All = $"{Root}/all";
+                public static string Search = $"{Root}/search";
                 public static string GetWithID = $"{Root}";
             }
 

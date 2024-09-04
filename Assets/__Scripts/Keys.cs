@@ -24,6 +24,9 @@ namespace VOU
             {
                 public static readonly string Token = nameof(Token);
             }
+
+            public static readonly string GameID = nameof(GameID);
+
         }
 
         public static class Popup
@@ -32,6 +35,7 @@ namespace VOU
             public static readonly string QuizzAnswerSelector = $"{prefix}{nameof(QuizzAnswerSelector)}";
             public static readonly string EventDetail = $"{prefix}{nameof(EventDetail)}";
             public static readonly string GameDetail = $"{prefix}{nameof(GameDetail)}";
+            public static readonly string MessageBox = $"{prefix}{nameof(MessageBox)}";
             public static readonly string Login = $"{prefix}{nameof(Login)}";
             public static readonly string OTPInputPage = $"{prefix}{nameof(OTPInputPage)}";
             public static readonly string InputUserDetail = $"{prefix}{nameof(InputUserDetail)}";

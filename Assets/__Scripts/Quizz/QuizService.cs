@@ -6,6 +6,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static VOU.Env.Routes;
 
 namespace VOU
 {
@@ -22,22 +23,22 @@ namespace VOU
         public const string EVENT_RESULT = "answerResult";
         public const string EVENT_END_QUIZ = "endQuiz";
 
-        string currentRoom;
+        int gameID;
 
         protected override string GetURl()
         {
-            return HttpClient.GetURL(Env.Routes.Quiz.Root);
+            return HttpClient.GetURL(Socket.Quiz);
         }
 
-        public void JoinRoom(string roomID)
+        public void JoinRoom(int gameID)
         {
-            socket.Emit(EVENT_JOIN_ROOM, roomID);
-            currentRoom = roomID;
+            socket.Emit(EVENT_JOIN_ROOM, gameID);
+            this.gameID = gameID;
         }
 
-        public void AnswerQuestion(int answerIndex)
+        public void AnswerQuestion(string answer)
         {
-            socket.Emit(EVENT_SEND_ANSWER, currentRoom, answerIndex);
+            socket.Emit(EVENT_SEND_ANSWER, gameID, answer);
         }
     }
 }

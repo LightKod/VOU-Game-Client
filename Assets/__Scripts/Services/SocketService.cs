@@ -20,13 +20,18 @@ namespace VOU
 
         public async UniTask<SocketIOUnity> CreateConnection()
         {
+            string token = "bearer " + PlayerPrefs.GetString(Keys.PlayerPrefs.User.Token);
+
+            //Debug.Log($"Create connection to {GetType()}");
+
             string url = GetURl();
             var uri = new Uri(url);
             var socket = new SocketIOUnity(uri, new SocketIOOptions
             {
+                Path = "/socket",
                 ExtraHeaders = new Dictionary<string, string>
                 {
-                    {"Authorization", AUTH_KEY}
+                    {"Authorization", token}
                 }
             });
 

@@ -13,7 +13,6 @@ namespace VOU
         [SerializeField] Image imgPoster;
         [SerializeField] TextMeshProUGUI txtEventName;
         [SerializeField] TextMeshProUGUI txtBrandName;
-        [SerializeField] Image imgBrandIcon;
 
         EventModel eventModel;
 

@@ -59,6 +59,7 @@ namespace VOU
             Dictionary<string, string> msgResult = JsonConvert.DeserializeObject<Dictionary<string, string>>(msg);
             Debug.Log(msgResult["token"]);
             ToastHandler.instance.Show("Login Successful", ToastState.Success);
+            PlayerPrefs.SetString(Keys.PlayerPrefs.User.Token, msgResult["token"]);
             SceneTransistion.instance.ChangeScene(Keys.Scene.HomeScene);
             //SelfClosing();
         }

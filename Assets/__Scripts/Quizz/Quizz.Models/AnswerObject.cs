@@ -6,7 +6,8 @@ namespace VOU
 {
     public class AnswerObject
     {
-        public int resultIndex;
+        public string correctAnswer;
+        public string selectedAnswer;
         public int[] answerCounts;
     }
 }

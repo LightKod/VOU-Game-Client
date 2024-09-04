@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
 using Newtonsoft.Json;
 using Owlet;
+using Owlet.Systems.SceneTransistions;
 using Owlet.UI;
 using SocketIOClient;
 using System;
@@ -9,23 +10,29 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 namespace VOU
 {
     //TODO: Upgrade this to use Socket
     public class QuizManager : Singleton<QuizManager>
     {
+        [SerializeField] string tempToken;
+        [SerializeField] int tempGameID;
         QuizService service;
 
-        public Action<int> onAnswerSelected;
+        public Action<string> onAnswerSelected;
         public Action<QuestionObject> onQuestionReceive;
         public Action<AudioClip> onMCDataReceieve;
 
-        string roomID = "20";
+        int gameID = 20;
 
         protected override void Init()
         {
             base.Init();
+            gameID = PlayerPrefs.GetInt(Keys.PlayerPrefs.GameID);
+            //gameID = tempGameID;
+            //PlayerPrefs.SetString(Keys.PlayerPrefs.User.Token, tempToken);
         }
 
         private void Start()
@@ -46,17 +53,52 @@ namespace VOU
         {
             service = new();
             await service.CreateConnection();
-            service.JoinRoom(roomID);
+            service.JoinRoom(gameID);
+
+            service.On(QuizService.EVENT_JOIN_ROOM, OnJoinRoomResultReceived);
 
             service.On(QuizService.EVENT_SEND_QUESTION, OnQuesionReceived);
             service.On(QuizService.EVENT_QUIZ_AUDIO, OnAudioReceived);
             service.On(QuizService.EVENT_SEND_ANSWER, OnAnswerReceievd);
         }
 
-        public void SelectAnswer(int index)
+        public void SelectAnswer(string answer)
         {
-            service.AnswerQuestion(index);
-            onAnswerSelected.Invoke(index);
+            service.AnswerQuestion(answer);
+            onAnswerSelected.Invoke(answer);
+        }
+
+        void OnJoinRoomResultReceived(SocketIOResponse res)
+        {
+            string resultString = res.GetValue<string>(0);
+            Dictionary<string, object> result = JsonConvert.DeserializeObject<Dictionary<string, object>>(resultString);
+
+            string roomState = result["roomState"] as string;
+            Debug.Log(result["roomState"]);
+
+            if (roomState == "Concluded")
+            {
+                MessagePopup.Open("Game has ended!", "The game has just ended, please try another game", () =>
+                {
+                    service.Dispose();
+                    SceneTransistion.instance.ChangeScene(Keys.Scene.LandingScene);
+                });
+
+                return;
+            }
+
+            if (roomState == "Waiting")
+            {
+                //TODO: Setup something here for the waiting state
+                //      maybe a countdown?
+            }
+
+            if (roomState == "Playing")
+            {
+                //TODO: Setup the state to playing
+            }
+
+            SceneTransistion.instance.DisableLoadingScreen();
         }
 
         async void OnQuesionReceived(SocketIOResponse res)
@@ -73,7 +115,6 @@ namespace VOU
         async void OnAudioReceived(SocketIOResponse res)
         {
             string audioStr = res.GetValue<string>(0);
-            Debug.Log($"Audio: {audioStr}");
             AudioClip clip = await HandleAudio(audioStr);
             onMCDataReceieve?.Invoke(clip);
         }
@@ -85,16 +126,12 @@ namespace VOU
 
             // Write bytes to a temporary file
             await File.WriteAllBytesAsync(tempPath, audioBytes);
-            Debug.Log($"Audio byte length: {audioBytes.Length}");
-            Debug.Log($"Temp path: {tempPath}");
 
             // Use UnityWebRequest to load the audio file into an AudioClip
             using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip("file://" + tempPath, AudioType.MPEG))
             {
                 ((DownloadHandlerAudioClip)www.downloadHandler).streamAudio = true;
                 await www.SendWebRequest();
-
-                Debug.Log(www.result);
 
                 DownloadHandlerAudioClip dlHandler = (DownloadHandlerAudioClip)www.downloadHandler;
 
@@ -105,7 +142,6 @@ namespace VOU
                     if (audioClip != null)
                     {
                         var _audioClip = DownloadHandlerAudioClip.GetContent(www);
-                        Debug.Log("Playing song using Audio Source!");
                         return _audioClip;
 
                     }

@@ -72,7 +72,7 @@ MonoBehaviour:
     - Popup
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2395a4bf5fbc8bf4a93ee823d80b6bd6
-    m_Address: Popup_Search
+    m_Address: Popup_EventList
     m_ReadOnly: 0
     m_SerializedLabels:
     - Popup
@@ -97,6 +97,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 888aff9e8f9ea004cbf41b69d7c508ca
     m_Address: Popup_Register
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Popup
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c46cb79c42da63b4bbb349e8e2ec7c97
+    m_Address: Popup_MessageBox
     m_ReadOnly: 0
     m_SerializedLabels:
     - Popup

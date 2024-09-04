@@ -7,7 +7,7 @@ namespace VOU
 {
     public class QuizTimer : MonoBehaviour
     {
-        public static readonly float TIME_TO_ANSWER = 12;
+        public static float TIME_TO_ANSWER = 15;
         float counter;
 
         bool isCounting = false;
@@ -28,7 +28,12 @@ namespace VOU
         public void StartCounter(QuestionObject questionObject)
         {
             isCounting = true;
-            counter = questionObject.timeLimit;
+            counter = TIME_TO_ANSWER = questionObject.timeLimit;
+        }
+
+        public void StopCounter()
+        {
+            isCounting = false;
         }
 
 

@@ -15,7 +15,8 @@ namespace VOU
         Default = 0,
         Selected = 1,
         Correct = 2,
-        Wrong = 3,
+        InCorrect = 3,
+        Wrong = 4,
     }
 
     public class QuizzAnswerButton : MonoBehaviour
@@ -25,7 +26,7 @@ namespace VOU
         [ChildGameObjectsOnly][SerializeField] Slider sliderCorrect;
         [ChildGameObjectsOnly][SerializeField] Button btnSelect;
         [SerializeField] LeanSwitch states;
-        int answerIndex;
+        string answer;
         private void Awake()
         {
             QuizManager.instance.onAnswerSelected += DisableButtons;
@@ -40,11 +41,10 @@ namespace VOU
         }
 
         [Button]
-        public void SetDefaultState(int answerIndex, string answer)
+        public void SetDefaultState(string answer)
         {
             this.DOKill();
-
-            this.answerIndex = answerIndex;
+            this.answer = answer;
             txtAnswer.text = answer;
             sliderCorrect.value = 0;
             txtAnswerCount.text = "";
@@ -53,27 +53,44 @@ namespace VOU
             btnSelect.targetGraphic.color = btnSelect.colors.normalColor;
         }
 
-        public void SetResultState(int answerIndex, string answer, AnswerObject answerObject)
+        public void SetResultState(string answer, AnswerObject answerObject, List<string> options)
         {
             this.DOKill();
-            txtAnswer.text = answer;
-            this.answerIndex = answerIndex;
+            this.answer = answer;
 
-            if (answerIndex == answerObject.resultIndex)
+            txtAnswer.text = answer;
+
+            if (answer == answerObject.selectedAnswer)
             {
-                SetState(QuizzAnswerButtonState.Correct);
+                if(answer == answerObject.correctAnswer)
+                {
+                    SetState(QuizzAnswerButtonState.Correct);
+                }
+                else
+                {
+                    SetState(QuizzAnswerButtonState.InCorrect);
+                }
             }
             else
             {
-                SetState(QuizzAnswerButtonState.Wrong);
+                if(answer == answerObject.correctAnswer)
+                {
+                    SetState(QuizzAnswerButtonState.Correct);
+                }
+                else
+                {
+                    SetState(QuizzAnswerButtonState.Wrong);
+                }
             }
-            int sameAnswerCount = answerObject.answerCounts[answerIndex];
-
+            int sameAnswerCount = answerObject.answerCounts[options.IndexOf(answer)];
+            if (sameAnswerCount == 0) return;
             Sequence animation = DOTween.Sequence()
                 .AppendInterval(0.5f)
                 .Append(DOVirtual.Int(0, sameAnswerCount, 1f, (int value) =>
                 {
-                    sliderCorrect.value = value * 1f / answerObject.answerCounts.Sum();
+                    float sum = answerObject.answerCounts.Sum();
+                    float nextValue = sum == 0 ? 0 : value * 1f / sum;
+                    sliderCorrect.value = nextValue;
                     txtAnswerCount.text = value.ToString();
                 }))
                 .SetTarget(this);
@@ -82,8 +99,8 @@ namespace VOU
 
         public void Select()
         {
-            Debug.Log($"Select: {answerIndex}");
-            QuizManager.instance.SelectAnswer(answerIndex);
+            Debug.Log($"Select: {answer}");
+            QuizManager.instance.SelectAnswer(answer);
             SetState(QuizzAnswerButtonState.Selected);
         }
 
@@ -92,7 +109,7 @@ namespace VOU
             states.State = (int)state;
         }
 
-        void DisableButtons(int index)
+        void DisableButtons(string answer)
         {
             DisableButtons();
         }
