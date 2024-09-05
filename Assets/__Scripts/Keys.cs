@@ -32,11 +32,15 @@ namespace VOU
         public static class Popup
         {
             const string prefix = "Popup_";
+            public static readonly string Login = $"{prefix}{nameof(Login)}";
+
             public static readonly string QuizzAnswerSelector = $"{prefix}{nameof(QuizzAnswerSelector)}";
             public static readonly string EventDetail = $"{prefix}{nameof(EventDetail)}";
             public static readonly string GameDetail = $"{prefix}{nameof(GameDetail)}";
             public static readonly string MessageBox = $"{prefix}{nameof(MessageBox)}";
-            public static readonly string Login = $"{prefix}{nameof(Login)}";
+            public static readonly string MessageItem = $"{prefix}{nameof(MessageItem)}";
+            public static readonly string ScratchCard = $"{prefix}{nameof(ScratchCard)}";
+
             public static readonly string OTPInputPage = $"{prefix}{nameof(OTPInputPage)}";
             public static readonly string InputUserDetail = $"{prefix}{nameof(InputUserDetail)}";
             public static readonly string InputAccountDetail = $"{prefix}{nameof(InputAccountDetail)}";
