@@ -2,6 +2,7 @@ using DG.Tweening;
 using Owlet;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace VOU
@@ -20,6 +21,29 @@ namespace VOU
         {
             base.Start();
             CreateTalkSequence();
+
+            QuizManager.instance.onMCDataReceieve += StartTalking;
+        }
+
+        private void OnDestroy()
+        {
+            QuizManager.instance.onMCDataReceieve -= StartTalking;
+        }
+
+        void StartTalking(AudioClip audioClip)
+        {
+            StopAllCoroutines();
+            StopTalking();
+
+            Debug.Log($"Audio length: {audioClip.length}");
+            StartCoroutine(TalkingCoroutine(audioClip.length));
+        }
+
+        IEnumerator TalkingCoroutine(float duration)
+        {
+            OpenMouth();
+            yield return new WaitForSeconds(duration);
+            StopTalking();
         }
 
         public override void UpdateModel()
@@ -30,7 +54,6 @@ namespace VOU
             }
             else if (Input.GetKeyUp(KeyCode.Space))
             {
-                this.DOKill();
                 StopTalking();
             }
         }
@@ -78,6 +101,8 @@ namespace VOU
         
         void StopTalking()
         {
+            this.DOKill();
+
             DOVirtual.Float(parameters.GetParam(MOUTH_Y), 0, mouthCloseTime,
                 (float value) =>
                 {

@@ -30,9 +30,9 @@ namespace VOU
         protected override void Init()
         {
             base.Init();
-            gameID = PlayerPrefs.GetInt(Keys.PlayerPrefs.GameID);
-            //gameID = tempGameID;
-            //PlayerPrefs.SetString(Keys.PlayerPrefs.User.Token, tempToken);
+            //gameID = PlayerPrefs.GetInt(Keys.PlayerPrefs.GameID);
+            gameID = tempGameID;
+            PlayerPrefs.SetString(Keys.PlayerPrefs.User.Token, tempToken);
         }
 
         private void Start()

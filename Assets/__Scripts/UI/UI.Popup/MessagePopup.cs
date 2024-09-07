@@ -9,6 +9,13 @@ using UnityEngine.UI;
 
 namespace VOU
 {
+    class MessageOption
+    {
+        public string text;
+        public Action onClick;
+        public Color buttonColor;
+    }
+
     public class MessagePopup : Popup
     {
         [SerializeField] TextMeshProUGUI txtTitle;
