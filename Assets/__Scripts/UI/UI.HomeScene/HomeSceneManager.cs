@@ -1,7 +1,6 @@
 using Cysharp.Threading.Tasks;
 using Newtonsoft.Json;
 using Owlet.Systems.SceneTransistions;
-using PlasticPipe.PlasticProtocol.Messages;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +30,7 @@ namespace VOU
 
         async void FetchFeatureEvents()
         {
-            await HttpClient.GetRequest(ServiceHelper.GetURL(Env.Routes.Event.All), async (string res) =>
+            await HttpClient.GetRequest(ServiceHelper.GetURL(Env.Routes.Event.All),true, async (string res) =>
             {
                 featureEvents = JsonConvert.DeserializeObject<List<EventModel>>(res);
 
@@ -52,7 +51,7 @@ namespace VOU
 
         async void FetchPopularGames()
         {
-            await HttpClient.GetRequest(ServiceHelper.GetURL(Env.Routes.Game.All), async (string res) =>
+            await HttpClient.GetRequest(ServiceHelper.GetURL(Env.Routes.Game.All),true, async (string res) =>
             {
                 featureGames = JsonConvert.DeserializeObject<List<GameModel>>(res);
 

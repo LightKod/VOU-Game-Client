@@ -8,10 +8,6 @@ using System.Collections.Specialized;
 using UnityEngine;
 using System.Linq;
 using System;
-using UnityEditor.Search;
-using UnityEditor.PackageManager;
-using Codice.CM.Common;
-using Codice.CM.Common.Tree.Partial;
 
 namespace VOU
 {
@@ -106,15 +102,12 @@ namespace VOU
             Debug.Log(queryString);
             string url = ServiceHelper.GetURL(Env.Routes.Event.Search) + $"?{queryString}";
             Debug.Log(url);
-            await HttpClient.GetRequest(url,
+            await HttpClient.GetRequest(url, true,
                 async (string res) =>
                 {
-                    Debug.Log(res);
                     Dictionary<string, object> data = JsonConvert.DeserializeObject<Dictionary<string, object>>(res);
-                    Debug.Log(data.Count);
                     string eventListStr = data["data"].ToString();
                     string maxPageStr = data["totalPages"].ToString();
-                    //Debug.Log(eventListStr);
 
                     List<EventModel> result = JsonConvert.DeserializeObject<List<EventModel>>(eventListStr);
                     totalPages = int.Parse(maxPageStr);

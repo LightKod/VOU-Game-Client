@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿#if UNITY_EDITOR
+using UnityEngine;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine.UI;
@@ -411,3 +412,5 @@ namespace ScratchCardAsset.Editor
 		}
 	}
 }
+
+#endif

@@ -22,10 +22,11 @@ namespace VOU
         public const string EVENT_QUIZ_AUDIO = "audio";
         public const string EVENT_RESULT = "answerResult";
         public const string EVENT_END_QUIZ = "endQuiz";
+        public const string EVENT_CHAT = "chat";
 
         int gameID;
 
-        protected override string GetURl()
+        protected override string GetURL()
         {
             return HttpClient.GetURL(Socket.Quiz);
         }
@@ -39,6 +40,12 @@ namespace VOU
         public void AnswerQuestion(string answer)
         {
             socket.Emit(EVENT_SEND_ANSWER, gameID, answer);
+        }
+
+
+        public void SendChatMessage(string message)
+        {
+            socket.Emit(EVENT_CHAT, gameID, message);
         }
     }
 }

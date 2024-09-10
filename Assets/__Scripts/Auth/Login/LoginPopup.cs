@@ -51,7 +51,7 @@ namespace VOU
                 { "password", password },
             };
 
-            await HttpClient.PostRequest(HttpClient.GetURL(Env.Routes.Auth.Login), form, OnLoginSuccess, OnLoginFail);
+            await HttpClient.PostRequest(HttpClient.GetURL(Env.Routes.Auth.Login), form, false, OnLoginSuccess, OnLoginFail);
         }
 
         void OnLoginSuccess(string msg)

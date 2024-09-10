@@ -1,4 +1,3 @@
-using CodiceApp.EventTracking;
 using EnhancedUI.EnhancedScroller;
 using Owlet.UI;
 using System.Collections;

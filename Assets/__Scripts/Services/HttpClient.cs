@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
+using static VOU.Env.Routes;
 
 namespace VOU
 {
@@ -33,12 +34,19 @@ namespace VOU
             }
         }
 
-        public static async UniTask PostRequest(string url, Dictionary<string, string> form, System.Action<string> onSuccess = null, System.Action<string> onError = null)
+        public static async UniTask PostRequest(string url,  Dictionary<string, string> form, bool auth = false, System.Action<string> onSuccess = null, System.Action<string> onError = null)
         {
             using UnityWebRequest www = UnityWebRequest.Post(url, form);
+            if (auth)
+            {
+                string token = PlayerPrefs.GetString(Keys.PlayerPrefs.User.Token);
+                www.SetRequestHeader("Authorization", $"bearer {token}");
+            }
             try
             {
+                Debug.Log("Send post req");
                 await www.SendWebRequest();
+                Debug.Log("Send post req_1");
 
                 if (www.result == UnityWebRequest.Result.Success)
                 {
@@ -47,13 +55,18 @@ namespace VOU
             }
             catch(Exception e)
             {
-                onError?.Invoke(www.error);
+                onError?.Invoke(e.Message);
             }
         }
 
-        public static async UniTask GetRequest(string url, System.Action<string> onSuccess = null, System.Action<string> onError = null)
+        public static async UniTask GetRequest(string url,bool auth = false ,System.Action<string> onSuccess = null, System.Action<string> onError = null)
         {
             using UnityWebRequest www = UnityWebRequest.Get(url);
+            if (auth)
+            {
+                string token = PlayerPrefs.GetString(Keys.PlayerPrefs.User.Token); 
+                www.SetRequestHeader("Authorization", $"bearer {token}");
+            }
             try
             {
                 await www.SendWebRequest();

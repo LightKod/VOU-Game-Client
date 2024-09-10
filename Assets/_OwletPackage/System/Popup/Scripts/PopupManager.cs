@@ -9,8 +9,6 @@ namespace Owlet.UI
 {
     public class PopupManager : Singleton<PopupManager>
     {
-        //[SerializeField] AssetLabelReference uiLabelRef;
-
         [SerializeField] Transform[] layers;
 
         Dictionary<string, Popup> cachedObjects = new();

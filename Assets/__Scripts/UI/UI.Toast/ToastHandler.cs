@@ -22,7 +22,7 @@ namespace VOU
 
         async UniTask LoadObjects()
         {
-            if (toastItemPrefab == null) toastItemPrefab = await AddressableLoader.Load<ToastItem>("UI_ToastItem");
+            if (toastItemPrefab == null) toastItemPrefab = await AddressableLoader.Load<ToastItem>("UI_Toast");
         }
     }
 }

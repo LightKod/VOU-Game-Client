@@ -51,7 +51,7 @@ namespace VOU
 
         async UniTask FetchGameData(int gameId)
         {
-            await HttpClient.GetRequest(HttpClient.GetURL($"{Env.Routes.Game.GetWithID}/{gameId}"), async (res) =>
+            await HttpClient.GetRequest(HttpClient.GetURL($"{Env.Routes.Game.GetWithID}/{gameId}"),true, async (res) =>
             {
                 try
                 {
@@ -72,7 +72,7 @@ namespace VOU
 
         async UniTask FetchGameTypeData(int gameTypeId)
         {
-            await HttpClient.GetRequest(HttpClient.GetURL($"{Env.Routes.Game.GetWithID}/{gameTypeId}"), (res) =>
+            await HttpClient.GetRequest(HttpClient.GetURL($"{Env.Routes.Game.GetWithID}/{gameTypeId}"),true, (res) =>
             {
                 try
                 {

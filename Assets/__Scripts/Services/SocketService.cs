@@ -11,20 +11,14 @@ namespace VOU
 {
     public abstract class SocketService
     {
-        const string AUTH_KEY = "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6MiwiaWF0IjoxNzIxNzAyODM1LCJleHAiOjM2MDAxNzIxNzAyODM1fQ.Vv3__g5tCx8wV3_OTnI4TRQYrNkNhKsclbYgK-eOHFY";
         const string EVENT_DEBUG = "debug";
-
-        protected abstract string GetURl();
-
         protected SocketIOUnity socket;
-
+        protected abstract string GetURL();
         public async UniTask<SocketIOUnity> CreateConnection()
         {
             string token = "bearer " + PlayerPrefs.GetString(Keys.PlayerPrefs.User.Token);
 
-            //Debug.Log($"Create connection to {GetType()}");
-
-            string url = GetURl();
+            string url = GetURL();
             var uri = new Uri(url);
             var socket = new SocketIOUnity(uri, new SocketIOOptions
             {

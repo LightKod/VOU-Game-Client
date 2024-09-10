@@ -14,7 +14,7 @@ namespace VOU
             public static class Socket
             {
                 public static string Root = "/socket";
-                public static string Quiz = $"/quiz";
+                public static string Quiz = $"";
             }
             public static class Chat
             {
@@ -47,6 +47,15 @@ namespace VOU
                 {
                     public static string Root = $"{Game.Root}/gametype";
                     public static string GetWithID = $"{Root}";
+
+                }
+            }
+
+            public static class Voucher
+            {
+
+                public static class VoucherTemplate
+                {
 
                 }
             }

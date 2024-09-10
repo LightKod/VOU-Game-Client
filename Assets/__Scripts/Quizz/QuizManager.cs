@@ -19,11 +19,15 @@ namespace VOU
     {
         [SerializeField] string tempToken;
         [SerializeField] int tempGameID;
+
+        [SerializeField] QuizzWaitCountdown countdown;
         QuizService service;
 
         public Action<string> onAnswerSelected;
         public Action<QuestionObject> onQuestionReceive;
         public Action<AudioClip> onMCDataReceieve;
+        public Action<string, string> onChatReceived;
+
 
         int gameID = 20;
 
@@ -59,7 +63,9 @@ namespace VOU
 
             service.On(QuizService.EVENT_SEND_QUESTION, OnQuesionReceived);
             service.On(QuizService.EVENT_QUIZ_AUDIO, OnAudioReceived);
-            service.On(QuizService.EVENT_SEND_ANSWER, OnAnswerReceievd);
+            service.On(QuizService.EVENT_SEND_ANSWER, OnAnswerReceived);
+            service.On(QuizService.EVENT_CHAT, OnChatReceived);
+            service.On(QuizService.EVENT_END_QUIZ, OnQuizEnd);
         }
 
         public void SelectAnswer(string answer)
@@ -68,29 +74,38 @@ namespace VOU
             onAnswerSelected.Invoke(answer);
         }
 
+        public void SendChatMessage(string msg)
+        {
+            service.SendChatMessage(msg);
+        }
+
         void OnJoinRoomResultReceived(SocketIOResponse res)
         {
             string resultString = res.GetValue<string>(0);
             Dictionary<string, object> result = JsonConvert.DeserializeObject<Dictionary<string, object>>(resultString);
 
             string roomState = result["roomState"] as string;
-            Debug.Log(result["roomState"]);
 
+            string startTimeStr = result["startTime"] as string;
+            long startTimeTimestamp = long.Parse(startTimeStr);
+
+            DateTime startTime = DateTimeOffset.FromUnixTimeSeconds(startTimeTimestamp).LocalDateTime;
+            Debug.Log("Converted DateTime: " + startTime);
             if (roomState == "Concluded")
             {
-                MessagePopup.Open("Game has ended!", "The game has just ended, please try another game", () =>
+                MessagePopup.Open("Game has ended!", "The game has ended, you can still chat with other players", () =>
                 {
-                    service.Dispose();
-                    SceneTransistion.instance.ChangeScene(Keys.Scene.LandingScene);
+                    //service.Dispose();
+                    //SceneTransistion.instance.ChangeScene(Keys.Scene.HomeScene);
                 });
-
-                return;
             }
 
             if (roomState == "Waiting")
             {
                 //TODO: Setup something here for the waiting state
                 //      maybe a countdown?
+                countdown.ShowUI(startTime);
+
             }
 
             if (roomState == "Playing")
@@ -103,6 +118,8 @@ namespace VOU
 
         async void OnQuesionReceived(SocketIOResponse res)
         {
+            StopAllCoroutines();
+
             string questionStr = res.GetValue<string>(0);
             QuestionObject questionObject = JsonConvert.DeserializeObject<QuestionObject>(questionStr);
 
@@ -117,6 +134,48 @@ namespace VOU
             string audioStr = res.GetValue<string>(0);
             AudioClip clip = await HandleAudio(audioStr);
             onMCDataReceieve?.Invoke(clip);
+        }
+
+        async void OnAnswerReceived(SocketIOResponse res)
+        {
+            StopAllCoroutines();
+
+            string ansStr = res.GetValue<string>(1);
+            AnswerObject answerObject = JsonConvert.DeserializeObject<AnswerObject>(ansStr);
+
+            string qstStr = res.GetValue<string>(0);
+            QuestionObject questionObject = JsonConvert.DeserializeObject<QuestionObject>(qstStr);
+
+            QuizzAnswerSelector answerSelector = await PopupManager.instance.OpenUI<QuizzAnswerSelector>(Keys.Popup.QuizzAnswerSelector, 1);
+            answerSelector.SetupUIResult(questionObject, answerObject);
+
+            StartCoroutine(ClosePopupDelay());
+        }
+
+        async void OnQuizEnd(SocketIOResponse res)
+        {
+            string victoryPlayerStr = res.GetValue<string>(0);
+            var voucherTemplateData = res.GetValue<string>(1);
+
+            Debug.Log(victoryPlayerStr);
+            Debug.Log(voucherTemplateData);
+
+            VoucherTemplateModel voucherTemplateModel = JsonConvert.DeserializeObject<VoucherTemplateModel>(voucherTemplateData);
+            List<VictoryPlayer> victoryPlayers = JsonConvert.DeserializeObject<List<VictoryPlayer>>(victoryPlayerStr);
+
+            QuizResultPopup quizResultPopup = await PopupManager.instance.OpenUI<QuizResultPopup>(
+                Keys.Popup.QuizResult, 1, false);
+
+            quizResultPopup.SetData(victoryPlayers, voucherTemplateModel);
+            quizResultPopup.EnableUI();
+            StartCoroutine(ClosePopupDelay());
+        }
+        void OnChatReceived(SocketIOResponse res)
+        {
+            string username = res.GetValue<string>(0);
+            string chatMessage = res.GetValue<string>(1);
+
+            onChatReceived?.Invoke(username, chatMessage);
         }
 
         public async UniTask<AudioClip> HandleAudio(string audioStr)
@@ -159,18 +218,10 @@ namespace VOU
             return null;
         }
 
-        async void OnAnswerReceievd(SocketIOResponse res)
+        
+        private IEnumerator ClosePopupDelay()
         {
-            string ansStr = res.GetValue<string>(1);
-            AnswerObject answerObject = JsonConvert.DeserializeObject<AnswerObject>(ansStr);
-
-            string qstStr = res.GetValue<string>(0);
-            QuestionObject questionObject = JsonConvert.DeserializeObject<QuestionObject>(qstStr);
-
-            QuizzAnswerSelector answerSelector = await PopupManager.instance.OpenUI<QuizzAnswerSelector>(Keys.Popup.QuizzAnswerSelector, 1);
-            answerSelector.SetupUIResult(questionObject, answerObject);
-
-            await UniTask.Delay(TimeSpan.FromSeconds(10), ignoreTimeScale: false);
+            yield return new WaitForSeconds(6);
             ClosePopup();
         }
 

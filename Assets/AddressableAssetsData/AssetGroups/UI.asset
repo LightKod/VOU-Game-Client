@@ -18,49 +18,79 @@ MonoBehaviour:
   m_GUID: d0f7deca91ea4e3449d7e8cc971fcb28
   m_SerializeEntries:
   - m_GUID: 14830068ad4b041479d2184e0b53b08b
-    m_Address: UI_ChatItem
+    m_Address: UI_ChatCellView
     m_ReadOnly: 0
     m_SerializedLabels:
     - UI
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 19734c85842c6054c8d87eb6b02379c9
-    m_Address: UI_ToastItem
+    m_Address: UI_Toast
     m_ReadOnly: 0
     m_SerializedLabels:
     - UI
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f58328fcecf8fc94ebee5af9164e7e7c
-    m_Address: UI_QuizzItem
+    m_Address: UI_QuizCellView
     m_ReadOnly: 0
     m_SerializedLabels:
     - UI
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7deda24590b60224c91fd90b7005a403
-    m_Address: UI_GameItem
+    m_Address: UI_GameCellView
     m_ReadOnly: 0
     m_SerializedLabels:
     - UI
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 40c922c629f9b694f928066a966bdb00
-    m_Address: UI_EventItem
+    m_Address: UI_EventCellView
     m_ReadOnly: 0
     m_SerializedLabels:
     - UI
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 583ea5e8f727fe346b95f6d7b1c7d974
-    m_Address: UI_EventItem_Vertical
+    m_Address: UI_EventCellView_Vertical
     m_ReadOnly: 0
     m_SerializedLabels:
     - UI
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e9831f63c1451bf45854723ab4071cfc
-    m_Address: UI_GachaItem
+    m_Address: UI_GachaCellView
     m_ReadOnly: 0
     m_SerializedLabels:
     - UI
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8ebaf6452f3af494f8bbeb9288ce6b08
-    m_Address: UI_Horizontal Item Cellview
+    m_Address: UI_GachaItemCellView_Horizontal
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5366572bbfe168d4b893984b76b78c19
+    m_Address: UI_ChatSpacerCellView
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fccff388caea51c4e8cce54c0a5f7488
+    m_Address: UI_PlayerCellView
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6a9222c2558dff941a6fb4c3b11a826c
+    m_Address: UI_VoucherCellView
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a85075659bcbaa0459c6bf2d0c8ba94b
+    m_Address: UI_Voucher Loading Cell View
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 93494e3d60e02534b98d10756e88ebb9
+    m_Address: UI_VoucherCellView_Uninteract
     m_ReadOnly: 0
     m_SerializedLabels:
     - UI

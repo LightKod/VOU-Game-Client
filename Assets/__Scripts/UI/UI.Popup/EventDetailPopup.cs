@@ -38,7 +38,7 @@ namespace VOU
 
         async UniTask FetchEventData()
         {
-            await HttpClient.GetRequest(HttpClient.GetURL($"{Env.Routes.Event.GetWithID}/{eventId}"), (res) =>
+            await HttpClient.GetRequest(HttpClient.GetURL($"{Env.Routes.Event.GetWithID}/{eventId}"),true, (res) =>
             {
                 EventModel eventModel = JsonConvert.DeserializeObject<EventModel>(res);
                 UpdateUI(eventModel);
@@ -51,7 +51,7 @@ namespace VOU
 
         async UniTask FetchGameInEventData()
         {
-            await HttpClient.GetRequest(HttpClient.GetURL($"{Env.Routes.Game.GetAllInEvent}/{eventId}"), (res) =>
+            await HttpClient.GetRequest(HttpClient.GetURL($"{Env.Routes.Game.GetAllInEvent}/{eventId}"),true, (res) =>
             {
                 List<GameModel> gameModels = JsonConvert.DeserializeObject<List<GameModel>>(res);
                 gameScroller.SetData(gameModels);
