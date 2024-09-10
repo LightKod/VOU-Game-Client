@@ -44,9 +44,7 @@ namespace VOU
             }
             try
             {
-                Debug.Log("Send post req");
                 await www.SendWebRequest();
-                Debug.Log("Send post req_1");
 
                 if (www.result == UnityWebRequest.Result.Success)
                 {

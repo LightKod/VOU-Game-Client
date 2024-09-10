@@ -7,7 +7,7 @@ namespace VOU
     //Should realy not exist here
     public static class Env
     {
-        public static string BASE_URL = "http://localhost:8000";
+        public static string BASE_URL = "http://192.168.191.173:8000";
 
         public static class Routes
         {
