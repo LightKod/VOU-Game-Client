@@ -91,6 +91,8 @@ namespace VOU
         void OnRegisterFailed(string msg)
         {
             Debug.Log(msg);
+            ToastHandler.instance.Show(msg, ToastState.Error);
+
             ToggleInteraction(true);
         }
 
