@@ -7,7 +7,7 @@ namespace VOU
     //Should realy not exist here
     public static class Env
     {
-        public static string BASE_URL = "http://192.168.191.173:8000";
+        public static string BASE_URL = "http://localhost:8000";
 
         public static class Routes
         {
@@ -24,7 +24,7 @@ namespace VOU
             public static class Auth
             {
                 public static string Root = "/auth";
-                public static string Register = $"{Root}/register";
+                public static string Register = $"{Root}/register/user";
                 public static string Login = $"{Root}/login";
             }
 
@@ -49,6 +49,21 @@ namespace VOU
                     public static string GetWithID = $"{Root}";
 
                 }
+            }
+
+            public static class GachaPlayer
+            {
+                public static string Root = "/gacha-player";
+                public static string PlayTime = $"{Root}/playtime";
+                public static string UsePlay = $"{Root}/use-play";
+                public static string Inventory = $"{Root}/inventory";
+            }
+
+            public static class Gacha
+            {
+                public static string Root = "/gacha";
+                public static string GetItems = $"{Root}/items";
+                public static string GetSetsByGameID = $"{Root}/itemSetByGameID";
             }
 
             public static class Voucher

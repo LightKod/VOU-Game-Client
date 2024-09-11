@@ -11,6 +11,7 @@ namespace VOU
 {
     public class MessageItemPopup : Popup
     {
+        [SerializeField] Image imgItem;
         [SerializeField] TextMeshProUGUI txtTitle;
         [SerializeField] TextMeshProUGUI txtDetail;
         [SerializeField] Button btnInventory;
@@ -31,12 +32,14 @@ namespace VOU
             messagePopup.EnableUI();
         }
 
-        public void SetupUI(GachaItemModel gachaItemModel, Action onClose = null)
+        public async void SetupUI(GachaItemModel gachaItemModel, Action onClose = null)
         {
             this.onClose = onClose;
 
             txtTitle.text = "Congratulation!";
             txtDetail.text = $"You recieved 1 {gachaItemModel.name}";
+
+            imgItem.sprite = await ImageCache.GetImage(gachaItemModel.img);
         }
 
         void OpenInventory()

@@ -25,7 +25,9 @@ namespace VOU
                 if (dependencyStatus == DependencyStatus.Available)
                 {
                     Debug.Log(">>> Firebase is ready");
+#if !UNITY_EDITOR
                     FirebaseRemoteConfigManager.instance.FetchRemoteConfig();
+#endif
                     isInitialized = true;
                 }
                 else

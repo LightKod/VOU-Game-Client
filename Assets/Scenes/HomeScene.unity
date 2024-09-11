@@ -3098,13 +3098,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3856018338688702267, guid: 2395a4bf5fbc8bf4a93ee823d80b6bd6, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5731461433389148622, guid: 2395a4bf5fbc8bf4a93ee823d80b6bd6, type: 3}
       propertyPath: m_Name
       value: EventList
+      objectReference: {fileID: 0}
+    - target: {fileID: 5731461433389148622, guid: 2395a4bf5fbc8bf4a93ee823d80b6bd6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

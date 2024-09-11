@@ -7,8 +7,8 @@ namespace VOU
 {
     public class GameModel : BaseModel
     {
-        public int brand_id { get; set; }
-        public int event_id { get; set; }
+        public string brand_id { get; set; }
+        public int? event_id { get; set; }
         public string poster { get; set; }
         public string name { get; set; }
         public int game_type_id { get; set; }

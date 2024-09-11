@@ -18,7 +18,6 @@ namespace VOU
     
         public Task FetchRemoteConfig()
         {
-
             FirebaseRemoteConfig.DefaultInstance.SetConfigSettingsAsync(new ConfigSettings
             {
                 MinimumFetchIntervalInMilliseconds = 1000,

@@ -54,13 +54,13 @@ MonoBehaviour:
     - UI
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e9831f63c1451bf45854723ab4071cfc
-    m_Address: UI_GachaCellView
+    m_Address: UI_GachaItemCellView
     m_ReadOnly: 0
     m_SerializedLabels:
     - UI
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8ebaf6452f3af494f8bbeb9288ce6b08
-    m_Address: UI_GachaItemCellView_Horizontal
+    m_Address: UI_InventoryCellView
     m_ReadOnly: 0
     m_SerializedLabels:
     - UI
@@ -91,6 +91,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 93494e3d60e02534b98d10756e88ebb9
     m_Address: UI_VoucherCellView_Uninteract
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2c05fa973747b5647bdc1be3dd25b80c
+    m_Address: UI_ItemExchangeCellView
     m_ReadOnly: 0
     m_SerializedLabels:
     - UI

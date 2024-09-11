@@ -120,7 +120,7 @@ MonoBehaviour:
     - Popup
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 86750415250d65744a4f19d4baa73380
-    m_Address: Popup_Exchange Item
+    m_Address: Popup_ExchangeItem
     m_ReadOnly: 0
     m_SerializedLabels:
     - Popup

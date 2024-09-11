@@ -37,7 +37,7 @@ namespace VOU
         private void Progress_OnProgress(float progress)
         {
             if(isFinished) return;
-            if(progress > 0.8f)
+            if(progress > 0.7f)
             {
                 FinishScratch();
             }
@@ -51,7 +51,7 @@ namespace VOU
         async UniTask UpdateUI(GachaItemModel model)
         {
             txtItemName.text = model.name;
-            imgItemIcon.sprite = await ImageCache.GetImage(model.image);
+            imgItemIcon.sprite = await ImageCache.GetImage(model.img);
             isFinished = false;
         }
 

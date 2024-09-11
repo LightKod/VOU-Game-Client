@@ -7,7 +7,7 @@ namespace VOU
 {
     public class EventModel : BaseModel
     {
-        public int brand_id { get; set; } 
+        public string brand_id { get; set; } 
         public string poster { get; set; }
         public string name { get; set; }  
         public string description { get; set; }  

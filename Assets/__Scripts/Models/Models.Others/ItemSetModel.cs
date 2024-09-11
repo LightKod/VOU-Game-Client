@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace VOU
 {
-    public class GachaItemModel : BaseModel
+    public class ItemSetModel
     {
         public string _id { get; set; }
         public string name { get; set; }
         public string description { get; set; }
-        public string img { get; set; }
+        public List<string> items { get; set; }
     }
 }

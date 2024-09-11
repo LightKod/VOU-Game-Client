@@ -41,6 +41,8 @@ namespace VOU
             public static readonly string MessageItem = $"{prefix}{nameof(MessageItem)}";
             public static readonly string ScratchCard = $"{prefix}{nameof(ScratchCard)}";
             public static readonly string QuizResult = $"{prefix}{nameof(QuizResult)}";
+            public static readonly string Inventory = $"{prefix}{nameof(Inventory)}";
+            public static readonly string ExchangeItem = $"{prefix}{nameof(ExchangeItem)}";
 
             public static readonly string OTPInputPage = $"{prefix}{nameof(OTPInputPage)}";
             public static readonly string InputUserDetail = $"{prefix}{nameof(InputUserDetail)}";

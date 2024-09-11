@@ -13,6 +13,8 @@ namespace VOU
     {
         [SerializeField] Button btnConfirm;
         [SerializeField] InputFieldValidation inputEmail;
+        [SerializeField] InputFieldValidation inputName;
+        [SerializeField] InputFieldValidation inputUsername;
         [SerializeField] InputFieldValidation inputPhone;
         [SerializeField] InputFieldValidation inputPassword;
         [SerializeField] InputFieldValidation inputConfirmPassword;
@@ -34,6 +36,8 @@ namespace VOU
         {
             phoneNumber = "";
             string email = inputEmail.GetValue();
+            string name = inputName.GetValue();
+            string username = inputUsername.GetValue();
             string password = inputPassword.GetValue();
             string confirmPassword = inputConfirmPassword.GetValue();
             phoneNumber = inputPhone.GetValue();
@@ -58,15 +62,27 @@ namespace VOU
                 ToastHandler.instance.Show("Please enter your phone number");
                 return;
             }
+            if (name.IsNullOrWhitespace())
+            {
+                ToastHandler.instance.Show("Please enter your name");
+                return;
+            }
 
+            if (username.IsNullOrWhitespace())
+            {
+                ToastHandler.instance.Show("Please enter your username");
+                return;
+            }
             ToggleInteraction(false);
 
 
             Dictionary<string, string> form = new()
             {
-                { "name", "AAA"},
+                { "name", name},
                 { "email", email },
                 { "password", password },
+                { "username", username},
+                { "phone", phoneNumber},
             };
 
             await HttpClient.PostRequest(HttpClient.GetURL(Env.Routes.Auth.Register), form,false ,OnRegisterSuccess, OnRegisterFailed);
