@@ -59,6 +59,7 @@ namespace VOU
             public static readonly string LandingScene = nameof(LandingScene);
             public static readonly string HomeScene = nameof(HomeScene);
             public static readonly string RealTimeQuizScene = nameof(RealTimeQuizScene);
+            public static readonly string GachaScene = nameof(GachaScene);
         }
     }
 }

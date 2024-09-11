@@ -72,7 +72,7 @@ namespace VOU
 
         async UniTask FetchGameTypeData(int gameTypeId)
         {
-            await HttpClient.GetRequest(HttpClient.GetURL($"{Env.Routes.Game.GetWithID}/{gameTypeId}"),true, (res) =>
+            await HttpClient.GetRequest(HttpClient.GetURL($"{Env.Routes.Game.GameType.GetWithID}/{gameTypeId}"),true, (res) =>
             {
                 try
                 {
@@ -105,7 +105,7 @@ namespace VOU
             refresher.Refresh();
 
             if (gameTypeModel == null) return;
-            txtGameTypeName.text = "Real-time Quiz";
+            txtGameTypeName.text = gameTypeModel.name;
 
             refresher.Refresh();
         }
@@ -132,6 +132,9 @@ namespace VOU
             if(gameTypeModel.id == 1) //Real time quiz
             {
                 SceneTransistion.instance.ChangeScene(Keys.Scene.RealTimeQuizScene);
+            }else if(gameTypeModel.id == 2)
+            {
+                SceneTransistion.instance.ChangeScene(Keys.Scene.GachaScene);
             }
 
         }

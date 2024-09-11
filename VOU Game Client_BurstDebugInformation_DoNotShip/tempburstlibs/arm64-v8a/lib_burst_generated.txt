@@ -19,6 +19,7 @@ Library: D:\Projects\Others\VOU-Game-Client\Temp\BurstOutput\tempburstlibs\arm64
 --assembly-defines=Firebase.App;
 --assembly-defines=Firebase.Auth;
 --assembly-defines=Firebase.Platform;
+--assembly-defines=Firebase.RemoteConfig;
 --assembly-defines=Firebase.TaskExtension;
 --assembly-defines=FMODUnity;
 --assembly-defines=FMODUnityResonance;
@@ -106,6 +107,7 @@ Library: D:\Projects\Others\VOU-Game-Client\Temp\BurstOutput\tempburstlibs\arm64
 --assembly-defines=Firebase.App;
 --assembly-defines=Firebase.Auth;
 --assembly-defines=Firebase.Platform;
+--assembly-defines=Firebase.RemoteConfig;
 --assembly-defines=Firebase.TaskExtension;
 --assembly-defines=FMODUnity;
 --assembly-defines=FMODUnityResonance;

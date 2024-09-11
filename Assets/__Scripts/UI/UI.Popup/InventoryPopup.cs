@@ -20,6 +20,7 @@ namespace VOU
         List<InventoryModel> _data = new();
         Dictionary<string, int> invenItemDictionary;
 
+
         int gameID;
 
         private void Awake()
@@ -111,6 +112,7 @@ namespace VOU
             if(dataIndex * 2 + 1 < _data.Count)
             {
                 model_2 = _data[dataIndex * 2 + 1];
+                Debug.Log(model_2.item.name);
             }
 
             InventoryCellView cellView = scroller.GetCellView(cellViewPrefab) as InventoryCellView;

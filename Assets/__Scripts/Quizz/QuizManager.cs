@@ -11,6 +11,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace VOU
 {
@@ -19,6 +20,7 @@ namespace VOU
     {
         [SerializeField] string tempToken;
         [SerializeField] int tempGameID;
+        [SerializeField] Button btnReturn;
 
         [SerializeField] QuizzWaitCountdown countdown;
         QuizService service;
@@ -34,9 +36,10 @@ namespace VOU
         protected override void Init()
         {
             base.Init();
-            //gameID = PlayerPrefs.GetInt(Keys.PlayerPrefs.GameID);
-            gameID = tempGameID;
-            PlayerPrefs.SetString(Keys.PlayerPrefs.User.Token, tempToken);
+            btnReturn.onClick.AddListener(ReturnToMainMenu);
+            gameID = PlayerPrefs.GetInt(Keys.PlayerPrefs.GameID);
+            //gameID = tempGameID;
+            //PlayerPrefs.SetString(Keys.PlayerPrefs.User.Token, tempToken);
         }
 
         private void Start()
@@ -228,6 +231,11 @@ namespace VOU
         private void ClosePopup()
         {
             PopupManager.instance.CloseUI(Keys.Popup.QuizzAnswerSelector);
+        }
+
+        void ReturnToMainMenu()
+        {
+            SceneTransistion.instance.ChangeScene(Keys.Scene.HomeScene);
         }
     }
 }

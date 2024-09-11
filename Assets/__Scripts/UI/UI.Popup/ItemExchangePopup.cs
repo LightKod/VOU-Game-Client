@@ -8,18 +8,27 @@ using System;
 using Newtonsoft.Json;
 using static VOU.Env.Routes;
 using UnityEngine.UIElements;
+using EnhancedUI.EnhancedScroller;
+using System.Threading.Tasks;
 
 namespace VOU
 {
-    public class ItemExchangePopup : Popup
+    public class ItemExchangePopup : Popup, IEnhancedScrollerDelegate
     {
+        [SerializeField] EnhancedScroller scroller;
+        [SerializeField] EnhancedScrollerCellView cellViewPrefab;
+
         GameModel gameModel;
-        Dictionary<string, int> invenItemDictionary;
+        Dictionary<string, int> invenItemDictionary = new();
 
-        List<GachaItemModel> itemDatas;
-        List<ItemSetModel> itemSets;
+        List<GachaItemModel> itemDatas = new();
+        List<ItemSetModel> itemSets = new();
+        VoucherTemplateModel voucherTemplateModel;
 
-
+        private void Awake()
+        {
+            scroller.Delegate = this;
+        }
         public void SetData(GameModel gameModel)
         {
             this.gameModel = gameModel;
@@ -28,7 +37,27 @@ namespace VOU
 
         protected override async UniTask FetchData()
         {
-            await FetchInventory();
+            await FetchVoucherDetail();
+        }
+
+        async UniTask FetchVoucherDetail()
+        {
+            await HttpClient.GetRequest(HttpClient.GetURL($"{Env.Routes.Voucher.VoucherTemplate.GetByID}?id={gameModel.voucher_template_id}"), true, async (res) =>
+            {
+                try
+                {
+                    voucherTemplateModel = JsonConvert.DeserializeObject<VoucherTemplateModel>(res);
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"Error: {e}");
+                }
+                await FetchInventory();
+            },
+            (msg) =>
+            {
+                Debug.Log($"Fetch game data failed: {msg}");
+            });
         }
 
         async UniTask FetchInventory()
@@ -94,10 +123,12 @@ namespace VOU
                 { "itemIds", itemIdsJson}
             };
 
-            await HttpClient.PostRequest(HttpClient.GetURL($"{Env.Routes.Gacha.GetItems}"), form, true, (res) =>
+            await HttpClient.PostRequest(HttpClient.GetURL($"{Env.Routes.Gacha.GetItems}"), form, true, async (res) =>
             {
                 itemDatas = JsonConvert.DeserializeObject<List<GachaItemModel>>(res);
                 Debug.Log(itemDatas.Count);
+
+                InitScroller();
             },
             (msg) =>
             {
@@ -105,5 +136,30 @@ namespace VOU
             });
         }
 
+
+        
+
+        async void InitScroller()
+        {
+            await Task.Yield();
+            scroller.ReloadData();
+        }
+
+        public int GetNumberOfCells(EnhancedScroller scroller)
+        {
+            return itemSets.Count();
+        }
+
+        public float GetCellViewSize(EnhancedScroller scroller, int dataIndex)
+        {
+            return 300;
+        }
+
+        public EnhancedScrollerCellView GetCellView(EnhancedScroller scroller, int dataIndex, int cellIndex)
+        {
+            ItemExchangeCellView cellView = scroller.GetCellView(cellViewPrefab) as ItemExchangeCellView;
+            cellView.SetupUI(gameModel, itemSets[dataIndex], invenItemDictionary, voucherTemplateModel,itemDatas);
+            return cellView;
+        }
     }
 }

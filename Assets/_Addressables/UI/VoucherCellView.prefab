@@ -165,7 +165,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Expiry Date: dd/mm/yyyy'
+  m_text: .....
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 23c1d06da482ff64b8cd4a6d08004f44, type: 2}
   m_sharedMaterial: {fileID: 1568878939840395078, guid: 23c1d06da482ff64b8cd4a6d08004f44, type: 2}
@@ -449,7 +449,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Voucher Item's Title So Long Haiyaa
+  m_text: .....
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e1e05b34330f404c9fb312546fa6558, type: 2}
   m_sharedMaterial: {fileID: -6270328118048487645, guid: 2e1e05b34330f404c9fb312546fa6558, type: 2}

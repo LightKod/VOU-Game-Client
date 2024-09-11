@@ -4,12 +4,10 @@ using Owlet;
 using Owlet.Systems.SceneTransistions;
 using Owlet.UI;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static VOU.Env.Routes;
 
 namespace VOU
 {
@@ -17,6 +15,8 @@ namespace VOU
     {
         [SerializeField] string tempToken;
         [SerializeField] int tempGameID;
+
+        [SerializeField] Button btnReturn;
 
         [SerializeField] Button btnScratch;
         [SerializeField] Button btnInventory;
@@ -36,6 +36,9 @@ namespace VOU
             btnInventory.onClick.AddListener(OpenInventory);
             btnExchange.onClick.AddListener(Exchange);
 
+            btnReturn.onClick.AddListener(ReturnToMainMenu);
+
+
             await FetchGameData();
             await FetchPlayTime();
             FinishFetch();
@@ -44,9 +47,9 @@ namespace VOU
         protected override void Init()
         {
             base.Init();
-            //gameID = PlayerPrefs.GetInt(Keys.PlayerPrefs.GameID);
-            gameID = tempGameID;
-            PlayerPrefs.SetString(Keys.PlayerPrefs.User.Token, tempToken);
+            gameID = PlayerPrefs.GetInt(Keys.PlayerPrefs.GameID);
+            //gameID = tempGameID;
+            //PlayerPrefs.SetString(Keys.PlayerPrefs.User.Token, tempToken);
         }
 
 
@@ -163,7 +166,9 @@ namespace VOU
 
         }
 
-
-
+        void ReturnToMainMenu()
+        {
+            SceneTransistion.instance.ChangeScene(Keys.Scene.HomeScene);
+        }
     }
 }

@@ -833,6 +833,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: btn_inventory
       objectReference: {fileID: 0}
+    - target: {fileID: 4818902278272983866, guid: a7d67f747d41a594e85c97a0f2a39cce, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5263008090482799239, guid: a7d67f747d41a594e85c97a0f2a39cce, type: 3}
       propertyPath: m_text
       value: Inventory

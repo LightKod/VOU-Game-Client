@@ -56,6 +56,7 @@ namespace VOU
                         print("Key :" + item.Key);
                         print("Value: " + item.Value.StringValue);
                     }
+                    Env.BASE_URL = remoteConfig.GetValue("HOST").StringValue;
                 });
         }
     }

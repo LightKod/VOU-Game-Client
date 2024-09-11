@@ -11,7 +11,7 @@ namespace VOU
         public int brand_id { get; set; }
         public int event_id { get; set; }
         public int game_id { get; set; }
-        public DateTime expiry_date { get; set; }
+        public DateTime expire { get; set; }
 
     }
 }

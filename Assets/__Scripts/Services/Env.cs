@@ -57,6 +57,7 @@ namespace VOU
                 public static string PlayTime = $"{Root}/playtime";
                 public static string UsePlay = $"{Root}/use-play";
                 public static string Inventory = $"{Root}/inventory";
+                public static string Redeem = $"{Root}/redeem";
             }
 
             public static class Gacha
@@ -68,10 +69,10 @@ namespace VOU
 
             public static class Voucher
             {
-
+                public static string GetByUserId = "voucher/voucher/getByUserID";
                 public static class VoucherTemplate
                 {
-
+                    public static string GetByID = "voucher/voucherTemplate/getByID";
                 }
             }
         }
